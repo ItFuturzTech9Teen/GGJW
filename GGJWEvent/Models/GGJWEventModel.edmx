@@ -1,0 +1,1681 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="GGJWEventModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="nvarchar(max)" />
+          <Property Name="Password" Type="nvarchar(max)" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="ApplyCoupon">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerId" Type="bigint" />
+          <Property Name="MobileNo" Type="nvarchar" MaxLength="100" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Qty" Type="nvarchar" MaxLength="100" />
+          <Property Name="ExhibitorId" Type="bigint" />
+          <Property Name="Date" Type="date" />
+        </EntityType>
+        <EntityType Name="AssignCouponExhibitor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CouponNo" Type="nvarchar(max)" />
+          <Property Name="ExhibitorId" Type="bigint" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Qty" Type="nvarchar" MaxLength="100" />
+          <Property Name="Total" Type="nvarchar(max)" />
+          <Property Name="Date" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StateId" Type="bigint" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MobileNo" Type="nvarchar" MaxLength="100" />
+          <Property Name="PersonName" Type="nvarchar" MaxLength="300" />
+          <Property Name="Designation" Type="nvarchar" MaxLength="300" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="300" />
+          <Property Name="Address" Type="nvarchar" MaxLength="300" />
+          <Property Name="CityId" Type="bigint" />
+          <Property Name="StateId" Type="bigint" />
+          <Property Name="Country" Type="nvarchar" MaxLength="300" />
+          <Property Name="TelephoneNo" Type="nvarchar" MaxLength="300" />
+          <Property Name="Email" Type="nvarchar" MaxLength="300" />
+          <Property Name="FCMToken" Type="nvarchar(max)" />
+          <Property Name="IsVerified" Type="bit" />
+          <Property Name="Image" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="CustomerCoupon">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AssignCouponId" Type="bigint" />
+          <Property Name="CouponNo" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="DailyDraw">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DrawName" Type="nvarchar(max)" />
+          <Property Name="Date" Type="date" />
+          <Property Name="DrawCount" Type="nvarchar" MaxLength="200" />
+          <Property Name="Prize" Type="nvarchar" MaxLength="200" />
+          <Property Name="Image" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Draw">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="nvarchar" MaxLength="100" />
+          <Property Name="CouponNo" Type="nvarchar" MaxLength="100" />
+          <Property Name="CustomerId" Type="bigint" />
+          <Property Name="NumberOfResult" Type="nvarchar" MaxLength="100" />
+          <Property Name="DrawId" Type="bigint" />
+        </EntityType>
+        <EntityType Name="DrawWinner">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DrawId" Type="bigint" />
+          <Property Name="CustomerId" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Exhibitor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PersonName" Type="nvarchar(max)" />
+          <Property Name="Designation" Type="nvarchar" MaxLength="100" />
+          <Property Name="CompanyName" Type="nvarchar(max)" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="Address1" Type="nvarchar(max)" />
+          <Property Name="Address2" Type="nvarchar(max)" />
+          <Property Name="CityId" Type="bigint" />
+          <Property Name="StateId" Type="bigint" />
+          <Property Name="Country" Type="nvarchar" MaxLength="100" />
+          <Property Name="TelephoneNo" Type="nvarchar(max)" />
+          <Property Name="MobileNo" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="GoogleLocation" Type="nvarchar(max)" />
+          <Property Name="FCMToken" Type="nvarchar(max)" />
+          <Property Name="IsVerified" Type="bit" />
+          <Property Name="Image" Type="nvarchar(max)" />
+          <Property Name="LatLong" Type="nvarchar" MaxLength="200" />
+          <Property Name="LatLong2" Type="nvarchar" MaxLength="200" />
+          <Property Name="LatLong3" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="ExhibitorBanner">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Image" Type="nvarchar(max)" />
+          <Property Name="OfferName" Type="nvarchar(max)" />
+          <Property Name="ExhibitorId" Type="bigint" />
+        </EntityType>
+        <EntityType Name="ExhibitorCouponQty">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AssignCouponExhibitorId" Type="bigint" />
+          <Property Name="Qty" Type="int" />
+        </EntityType>
+        <EntityType Name="MegaDraw">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DrawName" Type="nvarchar(max)" />
+          <Property Name="Date" Type="nvarchar(max)" />
+          <Property Name="DrawCount" Type="int" />
+          <Property Name="Prize" Type="nvarchar(max)" />
+          <Property Name="Image" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="MegaDrawWinner">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="nvarchar" MaxLength="300" />
+          <Property Name="CouponNo" Type="nvarchar" MaxLength="300" />
+          <Property Name="CustomerId" Type="bigint" />
+          <Property Name="NumberOfResult" Type="nvarchar" MaxLength="300" />
+          <Property Name="MegaDrawId" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Notification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ExhibitorId" Type="bigint" />
+          <Property Name="CustomerId" Type="bigint" />
+          <Property Name="Title" Type="nvarchar" MaxLength="200" />
+          <Property Name="Message" Type="nvarchar(max)" />
+          <Property Name="Date" Type="date" />
+        </EntityType>
+        <EntityType Name="RequestForCoupon">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ExhibitorId" Type="bigint" />
+          <Property Name="Qty" Type="nvarchar" MaxLength="100" />
+          <Property Name="Note" Type="nvarchar(max)" />
+          <Property Name="CouponNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsCompleted" Type="bit" />
+          <Property Name="Date" Type="date" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <Function Name="GetApplyCouponCustomer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetAssignedCoupons" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetCities" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetCoupon" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetCouponAssign" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="GetCouponDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetCouponList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="GetCouponToExhibitor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetCusmoterMobile" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="VistorId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="GetcustomerCouponByExhibitorIdData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ExhibitorId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="GetCustomerCouponData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="VisitorId" Type="bigint" Mode="In" />
+          <Parameter Name="ExhibitorId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="GetCustomerCouponDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="VisitorId" Type="bigint" Mode="In" />
+          <Parameter Name="ExhibitorId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="GetCustomerCouponHistoryData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetCustomerData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetCustomerFCMToken" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetCustomerFCMTokenMega" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetDashboardCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetDrawCoupon" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetDrawWinnerData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DrawId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="GetDrawWinnerListData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetExhibitorBannerData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetExhibitorByCustomerCoupon" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="VisitorId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="GetExhibitorData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetExhibitorLoginData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Mobile" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="GetExhibitorMobileno" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ExhibitorId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="GetMegaDrawWinnerData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetMyCustomerAssignCouponData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ExhibitorId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="GetRequestCouponData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ExhibitorId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="GetRequestForCoupon" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetTotalCoupon" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetTotalCouponData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ExhibitorId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="GetVisitorDataByMobileOrId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Mobile" Type="nvarchar" Mode="In" />
+          <Parameter Name="VisitorId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="GetVisitorLoginData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Mobile" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UpdateAssignCouponExhibitor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="bigint" Mode="In" />
+          <Parameter Name="ExhibitorId" Type="bigint" Mode="In" />
+          <Parameter Name="Qty" Type="nvarchar" Mode="In" />
+          <Parameter Name="Total" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UpdateCustomerCouponStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CouponId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="UpdateExhibitorFcmToken" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ExhibitorId" Type="bigint" Mode="In" />
+          <Parameter Name="FCMToken" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UpdateExhibitorVerficationStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="status" Type="int" Mode="In" />
+          <Parameter Name="ExhibitorId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="UpdateVisitoreVerficationStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="status" Type="int" Mode="In" />
+          <Parameter Name="VisitorId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="UpdateVisitorFcmToken" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="VisitorId" Type="bigint" Mode="In" />
+          <Parameter Name="FCMToken" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="GGJWEventModelStoreContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ApplyCoupon" EntityType="Self.ApplyCoupon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AssignCouponExhibitor" EntityType="Self.AssignCouponExhibitor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CustomerCoupon" EntityType="Self.CustomerCoupon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DailyDraw" EntityType="Self.DailyDraw" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Draw" EntityType="Self.Draw" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DrawWinner" EntityType="Self.DrawWinner" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Exhibitor" EntityType="Self.Exhibitor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExhibitorBanner" EntityType="Self.ExhibitorBanner" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExhibitorCouponQty" EntityType="Self.ExhibitorCouponQty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MegaDraw" EntityType="Self.MegaDraw" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MegaDrawWinner" EntityType="Self.MegaDrawWinner" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Notification" EntityType="Self.Notification" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RequestForCoupon" EntityType="Self.RequestForCoupon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GGJWEventModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="StateId" Type="Int64" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MobileNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PersonName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Designation" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="CityId" Type="Int64" />
+          <Property Name="StateId" Type="Int64" />
+          <Property Name="Country" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="TelephoneNo" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="FCMToken" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsVerified" Type="Boolean" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Draw">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CouponNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerId" Type="Int64" />
+          <Property Name="NumberOfResult" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DrawId" Type="Int64" />
+        </EntityType>
+        <EntityType Name="ExhibitorBanner">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OfferName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ExhibitorId" Type="Int64" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="GGJWEventEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cities" EntityType="Self.City" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="Draws" EntityType="Self.Draw" />
+          <EntitySet Name="ExhibitorBanners" EntityType="Self.ExhibitorBanner" />
+          <EntitySet Name="States" EntityType="Self.State" />
+          <FunctionImport Name="UpdateExhibitorVerficationStatus">
+            <Parameter Name="status" Mode="In" Type="Int32" />
+            <Parameter Name="ExhibitorId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateVisitoreVerficationStatus">
+            <Parameter Name="status" Mode="In" Type="Int32" />
+            <Parameter Name="VisitorId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <EntitySet Name="DrawWinners" EntityType="GGJWEventModel.DrawWinner" />
+          <EntitySet Name="DailyDraws" EntityType="GGJWEventModel.DailyDraw" />
+          <EntitySet Name="ApplyCoupons" EntityType="GGJWEventModel.ApplyCoupon" />
+          <FunctionImport Name="GetApplyCouponCustomer" ReturnType="Collection(GGJWEventModel.GetApplyCouponCustomer_Result)" />
+          <FunctionImport Name="GetDrawCoupon" ReturnType="Collection(GGJWEventModel.GetDrawCoupon_Result)" />
+          <FunctionImport Name="GetMyCustomerAssignCouponData" ReturnType="Collection(GGJWEventModel.GetMyCustomerAssignCouponData_Result)">
+          <Parameter Name="ExhibitorId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="GetVisitorDataByMobileOrId" ReturnType="Collection(GGJWEventModel.GetVisitorDataByMobileOrId_Result)">
+            <Parameter Name="Mobile" Mode="In" Type="String" />
+            <Parameter Name="VisitorId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="GetVisitorLoginData" ReturnType="Collection(GGJWEventModel.GetVisitorLoginData_Result)">
+          <Parameter Name="Mobile" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetExhibitorBannerData" ReturnType="Collection(GGJWEventModel.GetExhibitorBannerData_Result)" />
+          <FunctionImport Name="GetRequestForCoupon" ReturnType="Collection(GGJWEventModel.GetRequestForCoupon_Result)" />
+          <EntitySet Name="Admins" EntityType="GGJWEventModel.Admin" />
+          <FunctionImport Name="GetDashboardCount" ReturnType="Collection(GGJWEventModel.GetDashboardCount_Result)" />
+          <FunctionImport Name="GetCities" ReturnType="Collection(GGJWEventModel.GetCities_Result)" />
+          <EntitySet Name="AssignCouponExhibitors" EntityType="GGJWEventModel.AssignCouponExhibitor" />
+          <FunctionImport Name="GetCouponToExhibitor" ReturnType="Collection(GGJWEventModel.GetCouponToExhibitor_Result)" />
+          <FunctionImport Name="GetCustomerData" ReturnType="Collection(GGJWEventModel.GetCustomerData_Result)" />
+          <EntitySet Name="RequestForCoupons" EntityType="GGJWEventModel.RequestForCoupon" />
+          <FunctionImport Name="GetRequestCouponData" ReturnType="Collection(GGJWEventModel.GetRequestCouponData_Result)">
+          <Parameter Name="ExhibitorId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <EntitySet Name="ExhibitorCouponQties" EntityType="GGJWEventModel.ExhibitorCouponQty" />
+          <FunctionImport Name="GetCustomerCouponData" ReturnType="Collection(GGJWEventModel.GetCustomerCouponData_Result)">
+            <Parameter Name="VisitorId" Mode="In" Type="Int64" />
+            <Parameter Name="ExhibitorId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="GetDrawWinnerListData" ReturnType="Collection(GGJWEventModel.GetDrawWinnerListData_Result)" />
+          <FunctionImport Name="GetTotalCouponData" ReturnType="Collection(GGJWEventModel.GetTotalCouponData_Result)">
+          <Parameter Name="ExhibitorId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="GetDrawWinnerData" ReturnType="Collection(GGJWEventModel.GetDrawWinnerData_Result)">
+          <Parameter Name="DrawId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateExhibitorFcmToken">
+            <Parameter Name="ExhibitorId" Mode="In" Type="Int64" />
+            <Parameter Name="FCMToken" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateVisitorFcmToken">
+            <Parameter Name="VisitorId" Mode="In" Type="Int64" />
+            <Parameter Name="FCMToken" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="CustomerCoupons" EntityType="GGJWEventModel.CustomerCoupon" />
+          <FunctionImport Name="UpdateCustomerCouponStatus">
+          <Parameter Name="CouponId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <EntitySet Name="MegaDraws" EntityType="GGJWEventModel.MegaDraw" />
+          <EntitySet Name="MegaDrawWinners" EntityType="GGJWEventModel.MegaDrawWinner" />
+          <FunctionImport Name="GetCoupon" ReturnType="Collection(GGJWEventModel.GetCoupon_Result)" />
+          <FunctionImport Name="GetMegaDrawWinnerData" ReturnType="Collection(GGJWEventModel.GetMegaDrawWinnerData_Result)" />
+          <FunctionImport Name="GetCustomerFCMToken" ReturnType="Collection(GGJWEventModel.GetCustomerFCMToken_Result)" />
+          <FunctionImport Name="GetCustomerFCMTokenMega" ReturnType="Collection(GGJWEventModel.GetCustomerFCMTokenMega_Result)" />
+          <FunctionImport Name="GetCouponList" ReturnType="Collection(GGJWEventModel.GetCouponList_Result)">
+          <Parameter Name="Id" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="GetCouponAssign" ReturnType="Collection(GGJWEventModel.GetCouponAssign_Result)">
+          <Parameter Name="Id" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <EntitySet Name="Notifications" EntityType="GGJWEventModel.Notification" />
+          <FunctionImport Name="GetCustomerCouponDetail" ReturnType="Collection(GGJWEventModel.GetCustomerCouponDetail_Result)">
+            <Parameter Name="VisitorId" Mode="In" Type="Int64" />
+            <Parameter Name="ExhibitorId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="GetAssignedCoupons" ReturnType="Collection(GGJWEventModel.GetAssignedCoupons_Result)" />
+          <FunctionImport Name="GetcustomerCouponByExhibitorIdData" ReturnType="Collection(GGJWEventModel.GetcustomerCouponByExhibitorIdData_Result)">
+          <Parameter Name="ExhibitorId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateAssignCouponExhibitor">
+            <Parameter Name="Id" Mode="In" Type="Int64" />
+            <Parameter Name="ExhibitorId" Mode="In" Type="Int64" />
+            <Parameter Name="Qty" Mode="In" Type="String" />
+            <Parameter Name="Total" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetCustomerCouponHistoryData" ReturnType="Collection(GGJWEventModel.GetCustomerCouponHistoryData_Result)" />
+          <FunctionImport Name="GetExhibitorByCustomerCoupon" ReturnType="Collection(GGJWEventModel.GetExhibitorByCustomerCoupon_Result)">
+          <Parameter Name="VisitorId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="GetCusmoterMobile" ReturnType="Collection(GGJWEventModel.GetCusmoterMobile_Result)">
+          <Parameter Name="VistorId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="GetExhibitorMobileno" ReturnType="Collection(GGJWEventModel.GetExhibitorMobileno_Result)">
+          <Parameter Name="ExhibitorId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="GetCouponDetail" ReturnType="Collection(GGJWEventModel.GetCouponDetail_Result)" />
+          <EntitySet Name="Exhibitors" EntityType="GGJWEventModel.Exhibitor" />
+          <FunctionImport Name="GetExhibitorLoginData" ReturnType="Collection(GGJWEventModel.GetExhibitorLoginData_Result)">
+          <Parameter Name="Mobile" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetExhibitorData" ReturnType="Collection(GGJWEventModel.GetExhibitorData_Result)" />
+          <FunctionImport Name="GetTotalCoupon" ReturnType="Collection(GGJWEventModel.GetTotalCoupon_Result)" />
+        </EntityContainer>
+        <EntityType Name="DrawWinner">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DrawId" Type="Int64" />
+          <Property Name="CustomerId" Type="Int64" />
+        </EntityType>
+        <EntityType Name="DailyDraw">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DrawName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="DrawCount" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Prize" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ApplyCoupon">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerId" Type="Int64" />
+          <Property Name="MobileNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Qty" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ExhibitorId" Type="Int64" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+        </EntityType>
+        <ComplexType Name="GetApplyCouponCustomer_Result">
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="Int64" Name="CustomerId" Nullable="true" />
+          <Property Type="String" Name="MobileNo" Nullable="true" MaxLength="100" />
+          <Property Type="Decimal" Name="Price" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="Qty" Nullable="true" MaxLength="100" />
+          <Property Type="Int64" Name="ExhibitorId" Nullable="true" />
+          <Property Type="String" Name="ExhibitorName" Nullable="true" />
+          <Property Type="String" Name="PersonName" Nullable="true" MaxLength="300" />
+        </ComplexType>
+        <ComplexType Name="GetDrawCoupon_Result">
+          <Property Type="String" Name="CouponNo" Nullable="true" MaxLength="100" />
+          <Property Type="Int64" Name="AssignCouponId" Nullable="true" />
+          <Property Type="Int64" Name="CustomerId" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetMyCustomerAssignCouponData_Result">
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="Int64" Name="CustomerId" Nullable="true" />
+          <Property Type="String" Name="MobileNo" Nullable="true" MaxLength="100" />
+          <Property Type="Decimal" Name="Price" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="Qty" Nullable="true" MaxLength="100" />
+          <Property Type="Int64" Name="ExhibitorId" Nullable="true" />
+          <Property Type="DateTime" Name="Date" Nullable="true" />
+          <Property Type="String" Name="PersonName" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="CustomerMobile" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Image" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetVisitorDataByMobileOrId_Result">
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="String" Name="MobileNo" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="PersonName" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="Designation" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="CompanyName" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="300" />
+          <Property Type="Int64" Name="CityId" Nullable="true" />
+          <Property Type="Int64" Name="StateId" Nullable="true" />
+          <Property Type="String" Name="Country" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="TelephoneNo" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="FCMToken" Nullable="true" />
+          <Property Type="Boolean" Name="IsVerified" Nullable="true" />
+          <Property Type="String" Name="Image" Nullable="true" />
+          <Property Type="String" Name="StateName" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="CityName" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="GetVisitorLoginData_Result">
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="String" Name="MobileNo" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="PersonName" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="Designation" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="CompanyName" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="300" />
+          <Property Type="Int64" Name="CityId" Nullable="true" />
+          <Property Type="Int64" Name="StateId" Nullable="true" />
+          <Property Type="String" Name="Country" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="TelephoneNo" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="FCMToken" Nullable="true" />
+          <Property Type="Boolean" Name="IsVerified" Nullable="true" />
+          <Property Type="String" Name="Image" Nullable="true" />
+          <Property Type="String" Name="StateName" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="CityName" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="GetExhibitorBannerData_Result">
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Image" Nullable="true" />
+          <Property Type="String" Name="OfferName" Nullable="true" />
+          <Property Type="Int64" Name="ExhibitorId" Nullable="true" />
+          <Property Type="String" Name="PersonName" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetRequestForCoupon_Result">
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="Int64" Name="ExhibitorId" Nullable="true" />
+          <Property Type="String" Name="Qty" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Note" Nullable="true" />
+          <Property Type="String" Name="CouponNo" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="IsCompleted" Nullable="true" />
+          <Property Type="String" Name="PersonName" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="GetDashboardCount_Result">
+          <Property Type="Int32" Name="ExhibitorCount" Nullable="true" />
+          <Property Type="Int32" Name="CustomerCount" Nullable="true" />
+          <Property Type="Int32" Name="DailyDrawCount" Nullable="true" />
+          <Property Type="Int32" Name="DrawCount" Nullable="true" />
+          <Property Type="Decimal" Name="ExhibitorPer" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="CustomerPer" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="DailyDrawPer" Nullable="true" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="DrawPer" Nullable="true" Precision="10" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="GetCities_Result">
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="Int64" Name="StateId" Nullable="true" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="StateName" Nullable="true" MaxLength="300" />
+        </ComplexType>
+        <EntityType Name="AssignCouponExhibitor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CouponNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ExhibitorId" Type="Int64" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Qty" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Total" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="GetCouponToExhibitor_Result">
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="String" Name="CouponNo" Nullable="true" />
+          <Property Type="Int64" Name="ExhibitorId" Nullable="true" />
+          <Property Type="Decimal" Name="Price" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="Qty" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Total" Nullable="true" />
+          <Property Type="String" Name="Date" Nullable="true" />
+          <Property Type="String" Name="PersonName" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetCustomerData_Result">
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="String" Name="MobileNo" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="PersonName" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="Designation" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="CompanyName" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="300" />
+          <Property Type="Int64" Name="CityId" Nullable="true" />
+          <Property Type="Int64" Name="StateId" Nullable="true" />
+          <Property Type="String" Name="Country" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="TelephoneNo" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="FCMToken" Nullable="true" />
+          <Property Type="Boolean" Name="IsVerified" Nullable="true" />
+          <Property Type="String" Name="Image" Nullable="true" />
+          <Property Type="String" Name="StateName" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="CityName" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <EntityType Name="RequestForCoupon">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ExhibitorId" Type="Int64" />
+          <Property Name="Qty" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CouponNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsCompleted" Type="Boolean" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+        </EntityType>
+        <ComplexType Name="GetRequestCouponData_Result">
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="Int64" Name="ExhibitorId" Nullable="true" />
+          <Property Type="String" Name="Qty" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Note" Nullable="true" />
+          <Property Type="String" Name="CouponNo" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="IsCompleted" Nullable="true" />
+          <Property Type="DateTime" Name="Date" Nullable="true" />
+          <Property Type="String" Name="PersonName" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="ExhibitorCouponQty">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AssignCouponExhibitorId" Type="Int64" />
+          <Property Name="Qty" Type="Int32" />
+        </EntityType>
+        <ComplexType Name="GetCustomerCouponData_Result">
+          <Property Type="String" Name="CouponNo" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="GetDrawWinnerListData_Result">
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Date" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="CouponNo" Nullable="true" MaxLength="100" />
+          <Property Type="Int64" Name="CustomerId" Nullable="true" />
+          <Property Type="String" Name="NumberOfResult" Nullable="true" MaxLength="100" />
+          <Property Type="Int64" Name="DrawId" Nullable="true" />
+          <Property Type="String" Name="PersonName" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="DrawName" Nullable="true" />
+          <Property Type="String" Name="Image" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetTotalCouponData_Result">
+          <Property Type="Int32" Name="Remaining" Nullable="true" />
+          <Property Type="Int32" Name="Assign" Nullable="true" />
+          <Property Type="Int32" Name="Total" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetDrawWinnerData_Result">
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Date" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="CouponNo" Nullable="true" MaxLength="100" />
+          <Property Type="Int64" Name="CustomerId" Nullable="true" />
+          <Property Type="String" Name="NumberOfResult" Nullable="true" MaxLength="100" />
+          <Property Type="Int64" Name="DrawId" Nullable="true" />
+          <Property Type="String" Name="PersonName" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="DrawName" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="CustomerCoupon">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AssignCouponId" Type="Int64" />
+          <Property Name="CouponNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="MegaDraw">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DrawName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DrawCount" Type="Int32" />
+          <Property Name="Prize" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="MegaDrawWinner">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="CouponNo" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerId" Type="Int64" />
+          <Property Name="NumberOfResult" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="MegaDrawId" Type="Int64" />
+        </EntityType>
+        <ComplexType Name="GetCoupon_Result">
+          <Property Type="String" Name="CouponNo" Nullable="true" MaxLength="100" />
+          <Property Type="Int64" Name="AssignCouponId" Nullable="true" />
+          <Property Type="Int64" Name="CustomerId" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetMegaDrawWinnerData_Result">
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Date" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="CouponNo" Nullable="true" MaxLength="300" />
+          <Property Type="Int64" Name="CustomerId" Nullable="true" />
+          <Property Type="String" Name="NumberOfResult" Nullable="true" MaxLength="300" />
+          <Property Type="Int64" Name="MegaDrawId" Nullable="true" />
+          <Property Type="String" Name="DrawName" Nullable="true" />
+          <Property Type="String" Name="PersonName" Nullable="true" MaxLength="300" />
+        </ComplexType>
+        <ComplexType Name="GetCustomerFCMToken_Result">
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Date" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="CouponNo" Nullable="true" MaxLength="100" />
+          <Property Type="Int64" Name="CustomerId" Nullable="true" />
+          <Property Type="String" Name="NumberOfResult" Nullable="true" MaxLength="100" />
+          <Property Type="Int64" Name="DrawId" Nullable="true" />
+          <Property Type="String" Name="PersonName" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="DrawName" Nullable="true" />
+          <Property Type="String" Name="Image" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetCustomerFCMTokenMega_Result">
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Date" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="CouponNo" Nullable="true" MaxLength="300" />
+          <Property Type="Int64" Name="CustomerId" Nullable="true" />
+          <Property Type="String" Name="NumberOfResult" Nullable="true" MaxLength="300" />
+          <Property Type="Int64" Name="MegaDrawId" Nullable="true" />
+          <Property Type="String" Name="PersonName" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="DrawName" Nullable="true" />
+          <Property Type="String" Name="Image" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetCouponList_Result">
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="Int64" Name="ExhibitorId" Nullable="true" />
+          <Property Type="String" Name="Qty" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="Date" Nullable="true" />
+          <Property Type="String" Name="PersonName" Nullable="true" />
+          <Property Type="String" Name="CouponNo" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetCouponAssign_Result">
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="String" Name="CouponNo" Nullable="true" />
+          <Property Type="Int64" Name="ExhibitorId" Nullable="true" />
+          <Property Type="Decimal" Name="Price" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="Qty" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Total" Nullable="true" />
+          <Property Type="String" Name="Date" Nullable="true" />
+          <Property Type="String" Name="PersonName" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="Notification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ExhibitorId" Type="Int64" />
+          <Property Name="CustomerId" Type="Int64" />
+          <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+        </EntityType>
+        <ComplexType Name="GetCustomerCouponDetail_Result">
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="String" Name="CouponNo" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
+          <Property Type="String" Name="PersonName" Nullable="true" MaxLength="300" />
+        </ComplexType>
+        <ComplexType Name="GetAssignedCoupons_Result">
+          <Property Type="Int64" Name="ExhibitorId" Nullable="true" />
+          <Property Type="String" Name="PersonName" Nullable="true" />
+          <Property Type="String" Name="Qty" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="GetcustomerCouponByExhibitorIdData_Result">
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="String" Name="CouponNo" Nullable="true" MaxLength="100" />
+          <Property Type="Int64" Name="CustomerId" Nullable="true" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
+          <Property Type="String" Name="PersonName" Nullable="true" MaxLength="300" />
+        </ComplexType>
+        <ComplexType Name="GetCustomerCouponHistoryData_Result">
+          <Property Type="String" Name="PersonName" Nullable="true" MaxLength="300" />
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="TotalQty" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetExhibitorByCustomerCoupon_Result">
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="Int64" Name="CustomerId" Nullable="true" />
+          <Property Type="String" Name="MobileNo" Nullable="true" MaxLength="100" />
+          <Property Type="Decimal" Name="Price" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="Qty" Nullable="true" MaxLength="100" />
+          <Property Type="Int64" Name="ExhibitorId" Nullable="true" />
+          <Property Type="DateTime" Name="Date" Nullable="true" />
+          <Property Type="String" Name="PersonName" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetCusmoterMobile_Result">
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="Int64" Name="CustomerId" Nullable="true" />
+          <Property Type="String" Name="MobileNo" Nullable="true" MaxLength="100" />
+          <Property Type="Decimal" Name="Price" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="Qty" Nullable="true" MaxLength="100" />
+          <Property Type="Int64" Name="ExhibitorId" Nullable="true" />
+          <Property Type="DateTime" Name="Date" Nullable="true" />
+          <Property Type="String" Name="ExhihibtorName" Nullable="true" />
+          <Property Type="String" Name="FCMToken" Nullable="true" />
+          <Property Type="String" Name="CustomerMobile" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="CompanyName" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetExhibitorMobileno_Result">
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="String" Name="CouponNo" Nullable="true" />
+          <Property Type="Int64" Name="ExhibitorId" Nullable="true" />
+          <Property Type="Decimal" Name="Price" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="Qty" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Total" Nullable="true" />
+          <Property Type="String" Name="Date" Nullable="true" />
+          <Property Type="String" Name="Exhibitor" Nullable="true" />
+          <Property Type="String" Name="FCMToken" Nullable="true" />
+          <Property Type="String" Name="ExhibitorMobile" Nullable="true" />
+          <Property Type="String" Name="CompanyName" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetCouponDetail_Result">
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="Int64" Name="AssignCouponId" Nullable="true" />
+          <Property Type="String" Name="CouponNo" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
+          <Property Type="String" Name="PersonName" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="ExhibitorName" Nullable="true" />
+          <Property Type="DateTime" Name="Date" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="Exhibitor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Designation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CityId" Type="Int64" />
+          <Property Name="StateId" Type="Int64" />
+          <Property Name="Country" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TelephoneNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MobileNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GoogleLocation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FCMToken" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsVerified" Type="Boolean" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LatLong" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="LatLong2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="LatLong3" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="GetExhibitorLoginData_Result">
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="String" Name="PersonName" Nullable="true" />
+          <Property Type="String" Name="Designation" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="CompanyName" Nullable="true" />
+          <Property Type="String" Name="Address" Nullable="true" />
+          <Property Type="String" Name="Address1" Nullable="true" />
+          <Property Type="String" Name="Address2" Nullable="true" />
+          <Property Type="Int64" Name="CityId" Nullable="true" />
+          <Property Type="Int64" Name="StateId" Nullable="true" />
+          <Property Type="String" Name="Country" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="TelephoneNo" Nullable="true" />
+          <Property Type="String" Name="MobileNo" Nullable="true" />
+          <Property Type="String" Name="Email" Nullable="true" />
+          <Property Type="String" Name="GoogleLocation" Nullable="true" />
+          <Property Type="String" Name="FCMToken" Nullable="true" />
+          <Property Type="Boolean" Name="IsVerified" Nullable="true" />
+          <Property Type="String" Name="Image" Nullable="true" />
+          <Property Type="String" Name="LatLong" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="LatLong2" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="LatLong3" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="StateName" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="CityName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Banner" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetExhibitorData_Result">
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="String" Name="PersonName" Nullable="true" />
+          <Property Type="String" Name="Designation" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="CompanyName" Nullable="true" />
+          <Property Type="String" Name="Address" Nullable="true" />
+          <Property Type="String" Name="Address1" Nullable="true" />
+          <Property Type="String" Name="Address2" Nullable="true" />
+          <Property Type="Int64" Name="CityId" Nullable="true" />
+          <Property Type="Int64" Name="StateId" Nullable="true" />
+          <Property Type="String" Name="Country" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="TelephoneNo" Nullable="true" />
+          <Property Type="String" Name="MobileNo" Nullable="true" />
+          <Property Type="String" Name="Email" Nullable="true" />
+          <Property Type="String" Name="GoogleLocation" Nullable="true" />
+          <Property Type="String" Name="FCMToken" Nullable="true" />
+          <Property Type="Boolean" Name="IsVerified" Nullable="true" />
+          <Property Type="String" Name="Image" Nullable="true" />
+          <Property Type="String" Name="LatLong" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="LatLong2" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="LatLong3" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="StateName" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="CityName" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="GetTotalCoupon_Result">
+          <Property Type="String" Name="PersonName" Nullable="true" />
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="Decimal" Name="Price" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="TotalPrice" Nullable="true" />
+          <Property Type="Int32" Name="Pending" Nullable="true" />
+          <Property Type="Int32" Name="Assign" Nullable="true" />
+          <Property Type="Int32" Name="Total" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GGJWEventModelStoreContainer" CdmEntityContainer="GGJWEventEntities">
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="GGJWEventModel.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="GGJWEventModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="IsVerified" ColumnName="IsVerified" />
+                <ScalarProperty Name="FCMToken" ColumnName="FCMToken" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="PersonName" ColumnName="PersonName" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="TelephoneNo" ColumnName="TelephoneNo" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Draws">
+            <EntityTypeMapping TypeName="GGJWEventModel.Draw">
+              <MappingFragment StoreEntitySet="Draw">
+                <ScalarProperty Name="DrawId" ColumnName="DrawId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="CouponNo" ColumnName="CouponNo" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="NumberOfResult" ColumnName="NumberOfResult" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExhibitorBanners">
+            <EntityTypeMapping TypeName="GGJWEventModel.ExhibitorBanner">
+              <MappingFragment StoreEntitySet="ExhibitorBanner">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="OfferName" ColumnName="OfferName" />
+                <ScalarProperty Name="ExhibitorId" ColumnName="ExhibitorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="States">
+            <EntityTypeMapping TypeName="GGJWEventModel.State">
+              <MappingFragment StoreEntitySet="State">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="UpdateExhibitorVerficationStatus" FunctionName="GGJWEventModel.Store.UpdateExhibitorVerficationStatus" />
+          <FunctionImportMapping FunctionImportName="UpdateVisitoreVerficationStatus" FunctionName="GGJWEventModel.Store.UpdateVisitoreVerficationStatus" />
+          <EntitySetMapping Name="DrawWinners">
+            <EntityTypeMapping TypeName="GGJWEventModel.DrawWinner">
+              <MappingFragment StoreEntitySet="DrawWinner">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="DrawId" ColumnName="DrawId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DailyDraws">
+            <EntityTypeMapping TypeName="GGJWEventModel.DailyDraw">
+              <MappingFragment StoreEntitySet="DailyDraw">
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Prize" ColumnName="Prize" />
+                <ScalarProperty Name="DrawCount" ColumnName="DrawCount" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="DrawName" ColumnName="DrawName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ApplyCoupons">
+            <EntityTypeMapping TypeName="GGJWEventModel.ApplyCoupon">
+              <MappingFragment StoreEntitySet="ApplyCoupon">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="ExhibitorId" ColumnName="ExhibitorId" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetApplyCouponCustomer" FunctionName="GGJWEventModel.Store.GetApplyCouponCustomer">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GGJWEventModel.GetApplyCouponCustomer_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="ExhibitorId" ColumnName="ExhibitorId" />
+                <ScalarProperty Name="ExhibitorName" ColumnName="ExhibitorName" />
+                <ScalarProperty Name="PersonName" ColumnName="PersonName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetDrawCoupon" FunctionName="GGJWEventModel.Store.GetDrawCoupon">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GGJWEventModel.GetDrawCoupon_Result">
+                <ScalarProperty Name="CouponNo" ColumnName="CouponNo" />
+                <ScalarProperty Name="AssignCouponId" ColumnName="AssignCouponId" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetMyCustomerAssignCouponData" FunctionName="GGJWEventModel.Store.GetMyCustomerAssignCouponData">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GGJWEventModel.GetMyCustomerAssignCouponData_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="ExhibitorId" ColumnName="ExhibitorId" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="PersonName" ColumnName="PersonName" />
+                <ScalarProperty Name="CustomerMobile" ColumnName="CustomerMobile" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetVisitorDataByMobileOrId" FunctionName="GGJWEventModel.Store.GetVisitorDataByMobileOrId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GGJWEventModel.GetVisitorDataByMobileOrId_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="PersonName" ColumnName="PersonName" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="TelephoneNo" ColumnName="TelephoneNo" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="FCMToken" ColumnName="FCMToken" />
+                <ScalarProperty Name="IsVerified" ColumnName="IsVerified" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetVisitorLoginData" FunctionName="GGJWEventModel.Store.GetVisitorLoginData">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GGJWEventModel.GetVisitorLoginData_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="PersonName" ColumnName="PersonName" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="TelephoneNo" ColumnName="TelephoneNo" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="FCMToken" ColumnName="FCMToken" />
+                <ScalarProperty Name="IsVerified" ColumnName="IsVerified" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetExhibitorBannerData" FunctionName="GGJWEventModel.Store.GetExhibitorBannerData">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GGJWEventModel.GetExhibitorBannerData_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="OfferName" ColumnName="OfferName" />
+                <ScalarProperty Name="ExhibitorId" ColumnName="ExhibitorId" />
+                <ScalarProperty Name="PersonName" ColumnName="PersonName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetRequestForCoupon" FunctionName="GGJWEventModel.Store.GetRequestForCoupon">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GGJWEventModel.GetRequestForCoupon_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ExhibitorId" ColumnName="ExhibitorId" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="CouponNo" ColumnName="CouponNo" />
+                <ScalarProperty Name="IsCompleted" ColumnName="IsCompleted" />
+                <ScalarProperty Name="PersonName" ColumnName="PersonName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="GGJWEventModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetDashboardCount" FunctionName="GGJWEventModel.Store.GetDashboardCount">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GGJWEventModel.GetDashboardCount_Result">
+                <ScalarProperty Name="ExhibitorCount" ColumnName="ExhibitorCount" />
+                <ScalarProperty Name="CustomerCount" ColumnName="CustomerCount" />
+                <ScalarProperty Name="DailyDrawCount" ColumnName="DailyDrawCount" />
+                <ScalarProperty Name="DrawCount" ColumnName="DrawCount" />
+                <ScalarProperty Name="ExhibitorPer" ColumnName="ExhibitorPer" />
+                <ScalarProperty Name="CustomerPer" ColumnName="CustomerPer" />
+                <ScalarProperty Name="DailyDrawPer" ColumnName="DailyDrawPer" />
+                <ScalarProperty Name="DrawPer" ColumnName="DrawPer" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetCities" FunctionName="GGJWEventModel.Store.GetCities">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GGJWEventModel.GetCities_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="AssignCouponExhibitors">
+            <EntityTypeMapping TypeName="GGJWEventModel.AssignCouponExhibitor">
+              <MappingFragment StoreEntitySet="AssignCouponExhibitor">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ExhibitorId" ColumnName="ExhibitorId" />
+                <ScalarProperty Name="CouponNo" ColumnName="CouponNo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetCouponToExhibitor" FunctionName="GGJWEventModel.Store.GetCouponToExhibitor">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GGJWEventModel.GetCouponToExhibitor_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CouponNo" ColumnName="CouponNo" />
+                <ScalarProperty Name="ExhibitorId" ColumnName="ExhibitorId" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="PersonName" ColumnName="PersonName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetCustomerData" FunctionName="GGJWEventModel.Store.GetCustomerData">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GGJWEventModel.GetCustomerData_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="PersonName" ColumnName="PersonName" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="TelephoneNo" ColumnName="TelephoneNo" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="FCMToken" ColumnName="FCMToken" />
+                <ScalarProperty Name="IsVerified" ColumnName="IsVerified" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="RequestForCoupons">
+            <EntityTypeMapping TypeName="GGJWEventModel.RequestForCoupon">
+              <MappingFragment StoreEntitySet="RequestForCoupon">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="IsCompleted" ColumnName="IsCompleted" />
+                <ScalarProperty Name="CouponNo" ColumnName="CouponNo" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="ExhibitorId" ColumnName="ExhibitorId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetRequestCouponData" FunctionName="GGJWEventModel.Store.GetRequestCouponData">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GGJWEventModel.GetRequestCouponData_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ExhibitorId" ColumnName="ExhibitorId" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="CouponNo" ColumnName="CouponNo" />
+                <ScalarProperty Name="IsCompleted" ColumnName="IsCompleted" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="PersonName" ColumnName="PersonName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="ExhibitorCouponQties">
+            <EntityTypeMapping TypeName="GGJWEventModel.ExhibitorCouponQty">
+              <MappingFragment StoreEntitySet="ExhibitorCouponQty">
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="AssignCouponExhibitorId" ColumnName="AssignCouponExhibitorId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetCustomerCouponData" FunctionName="GGJWEventModel.Store.GetCustomerCouponData" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GGJWEventModel.GetCustomerCouponData_Result">
+                <ScalarProperty Name="CouponNo" ColumnName="CouponNo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetDrawWinnerListData" FunctionName="GGJWEventModel.Store.GetDrawWinnerListData">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GGJWEventModel.GetDrawWinnerListData_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="CouponNo" ColumnName="CouponNo" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="NumberOfResult" ColumnName="NumberOfResult" />
+                <ScalarProperty Name="DrawId" ColumnName="DrawId" />
+                <ScalarProperty Name="PersonName" ColumnName="PersonName" />
+                <ScalarProperty Name="DrawName" ColumnName="DrawName" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetTotalCouponData" FunctionName="GGJWEventModel.Store.GetTotalCouponData">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GGJWEventModel.GetTotalCouponData_Result">
+                <ScalarProperty Name="Remaining" ColumnName="Remaining" />
+                <ScalarProperty Name="Assign" ColumnName="Assign" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetDrawWinnerData" FunctionName="GGJWEventModel.Store.GetDrawWinnerData">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GGJWEventModel.GetDrawWinnerData_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="CouponNo" ColumnName="CouponNo" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="NumberOfResult" ColumnName="NumberOfResult" />
+                <ScalarProperty Name="DrawId" ColumnName="DrawId" />
+                <ScalarProperty Name="PersonName" ColumnName="PersonName" />
+                <ScalarProperty Name="DrawName" ColumnName="DrawName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UpdateExhibitorFcmToken" FunctionName="GGJWEventModel.Store.UpdateExhibitorFcmToken" />
+          <FunctionImportMapping FunctionImportName="UpdateVisitorFcmToken" FunctionName="GGJWEventModel.Store.UpdateVisitorFcmToken" />
+          <EntitySetMapping Name="CustomerCoupons">
+            <EntityTypeMapping TypeName="GGJWEventModel.CustomerCoupon">
+              <MappingFragment StoreEntitySet="CustomerCoupon">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CouponNo" ColumnName="CouponNo" />
+                <ScalarProperty Name="AssignCouponId" ColumnName="AssignCouponId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="UpdateCustomerCouponStatus" FunctionName="GGJWEventModel.Store.UpdateCustomerCouponStatus" />
+          <EntitySetMapping Name="MegaDraws">
+            <EntityTypeMapping TypeName="GGJWEventModel.MegaDraw">
+              <MappingFragment StoreEntitySet="MegaDraw">
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Prize" ColumnName="Prize" />
+                <ScalarProperty Name="DrawCount" ColumnName="DrawCount" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="DrawName" ColumnName="DrawName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MegaDrawWinners">
+            <EntityTypeMapping TypeName="GGJWEventModel.MegaDrawWinner">
+              <MappingFragment StoreEntitySet="MegaDrawWinner">
+                <ScalarProperty Name="MegaDrawId" ColumnName="MegaDrawId" />
+                <ScalarProperty Name="NumberOfResult" ColumnName="NumberOfResult" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="CouponNo" ColumnName="CouponNo" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetCoupon" FunctionName="GGJWEventModel.Store.GetCoupon">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GGJWEventModel.GetCoupon_Result">
+                <ScalarProperty Name="CouponNo" ColumnName="CouponNo" />
+                <ScalarProperty Name="AssignCouponId" ColumnName="AssignCouponId" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetMegaDrawWinnerData" FunctionName="GGJWEventModel.Store.GetMegaDrawWinnerData">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GGJWEventModel.GetMegaDrawWinnerData_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="CouponNo" ColumnName="CouponNo" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="NumberOfResult" ColumnName="NumberOfResult" />
+                <ScalarProperty Name="MegaDrawId" ColumnName="MegaDrawId" />
+                <ScalarProperty Name="DrawName" ColumnName="DrawName" />
+                <ScalarProperty Name="PersonName" ColumnName="PersonName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetCustomerFCMToken" FunctionName="GGJWEventModel.Store.GetCustomerFCMToken">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GGJWEventModel.GetCustomerFCMToken_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="CouponNo" ColumnName="CouponNo" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="NumberOfResult" ColumnName="NumberOfResult" />
+                <ScalarProperty Name="DrawId" ColumnName="DrawId" />
+                <ScalarProperty Name="PersonName" ColumnName="PersonName" />
+                <ScalarProperty Name="DrawName" ColumnName="DrawName" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetCustomerFCMTokenMega" FunctionName="GGJWEventModel.Store.GetCustomerFCMTokenMega">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GGJWEventModel.GetCustomerFCMTokenMega_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="CouponNo" ColumnName="CouponNo" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="NumberOfResult" ColumnName="NumberOfResult" />
+                <ScalarProperty Name="MegaDrawId" ColumnName="MegaDrawId" />
+                <ScalarProperty Name="PersonName" ColumnName="PersonName" />
+                <ScalarProperty Name="DrawName" ColumnName="DrawName" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetCouponList" FunctionName="GGJWEventModel.Store.GetCouponList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GGJWEventModel.GetCouponList_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ExhibitorId" ColumnName="ExhibitorId" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="PersonName" ColumnName="PersonName" />
+                <ScalarProperty Name="CouponNo" ColumnName="CouponNo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetCouponAssign" FunctionName="GGJWEventModel.Store.GetCouponAssign">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GGJWEventModel.GetCouponAssign_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CouponNo" ColumnName="CouponNo" />
+                <ScalarProperty Name="ExhibitorId" ColumnName="ExhibitorId" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="PersonName" ColumnName="PersonName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Notifications">
+            <EntityTypeMapping TypeName="GGJWEventModel.Notification">
+              <MappingFragment StoreEntitySet="Notification">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="ExhibitorId" ColumnName="ExhibitorId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetCustomerCouponDetail" FunctionName="GGJWEventModel.Store.GetCustomerCouponDetail">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GGJWEventModel.GetCustomerCouponDetail_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CouponNo" ColumnName="CouponNo" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="PersonName" ColumnName="PersonName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetAssignedCoupons" FunctionName="GGJWEventModel.Store.GetAssignedCoupons">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GGJWEventModel.GetAssignedCoupons_Result">
+                <ScalarProperty Name="ExhibitorId" ColumnName="ExhibitorId" />
+                <ScalarProperty Name="PersonName" ColumnName="PersonName" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetcustomerCouponByExhibitorIdData" FunctionName="GGJWEventModel.Store.GetcustomerCouponByExhibitorIdData">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GGJWEventModel.GetcustomerCouponByExhibitorIdData_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CouponNo" ColumnName="CouponNo" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="PersonName" ColumnName="PersonName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UpdateAssignCouponExhibitor" FunctionName="GGJWEventModel.Store.UpdateAssignCouponExhibitor" />
+          <FunctionImportMapping FunctionImportName="GetCustomerCouponHistoryData" FunctionName="GGJWEventModel.Store.GetCustomerCouponHistoryData">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GGJWEventModel.GetCustomerCouponHistoryData_Result">
+                <ScalarProperty Name="PersonName" ColumnName="PersonName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TotalQty" ColumnName="TotalQty" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetExhibitorByCustomerCoupon" FunctionName="GGJWEventModel.Store.GetExhibitorByCustomerCoupon">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GGJWEventModel.GetExhibitorByCustomerCoupon_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="ExhibitorId" ColumnName="ExhibitorId" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="PersonName" ColumnName="PersonName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetCusmoterMobile" FunctionName="GGJWEventModel.Store.GetCusmoterMobile">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GGJWEventModel.GetCusmoterMobile_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="ExhibitorId" ColumnName="ExhibitorId" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="ExhihibtorName" ColumnName="ExhihibtorName" />
+                <ScalarProperty Name="FCMToken" ColumnName="FCMToken" />
+                <ScalarProperty Name="CustomerMobile" ColumnName="CustomerMobile" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetExhibitorMobileno" FunctionName="GGJWEventModel.Store.GetExhibitorMobileno">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GGJWEventModel.GetExhibitorMobileno_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CouponNo" ColumnName="CouponNo" />
+                <ScalarProperty Name="ExhibitorId" ColumnName="ExhibitorId" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Exhibitor" ColumnName="Exhibitor" />
+                <ScalarProperty Name="FCMToken" ColumnName="FCMToken" />
+                <ScalarProperty Name="ExhibitorMobile" ColumnName="ExhibitorMobile" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetCouponDetail" FunctionName="GGJWEventModel.Store.GetCouponDetail">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GGJWEventModel.GetCouponDetail_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AssignCouponId" ColumnName="AssignCouponId" />
+                <ScalarProperty Name="CouponNo" ColumnName="CouponNo" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="PersonName" ColumnName="PersonName" />
+                <ScalarProperty Name="ExhibitorName" ColumnName="ExhibitorName" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Exhibitors">
+            <EntityTypeMapping TypeName="GGJWEventModel.Exhibitor">
+              <MappingFragment StoreEntitySet="Exhibitor">
+                <ScalarProperty Name="LatLong3" ColumnName="LatLong3" />
+                <ScalarProperty Name="LatLong2" ColumnName="LatLong2" />
+                <ScalarProperty Name="LatLong" ColumnName="LatLong" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="IsVerified" ColumnName="IsVerified" />
+                <ScalarProperty Name="FCMToken" ColumnName="FCMToken" />
+                <ScalarProperty Name="GoogleLocation" ColumnName="GoogleLocation" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="TelephoneNo" ColumnName="TelephoneNo" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="PersonName" ColumnName="PersonName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetExhibitorLoginData" FunctionName="GGJWEventModel.Store.GetExhibitorLoginData">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GGJWEventModel.GetExhibitorLoginData_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PersonName" ColumnName="PersonName" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="TelephoneNo" ColumnName="TelephoneNo" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="GoogleLocation" ColumnName="GoogleLocation" />
+                <ScalarProperty Name="FCMToken" ColumnName="FCMToken" />
+                <ScalarProperty Name="IsVerified" ColumnName="IsVerified" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="LatLong" ColumnName="LatLong" />
+                <ScalarProperty Name="LatLong2" ColumnName="LatLong2" />
+                <ScalarProperty Name="LatLong3" ColumnName="LatLong3" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="Banner" ColumnName="Banner" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetExhibitorData" FunctionName="GGJWEventModel.Store.GetExhibitorData">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GGJWEventModel.GetExhibitorData_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PersonName" ColumnName="PersonName" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="TelephoneNo" ColumnName="TelephoneNo" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="GoogleLocation" ColumnName="GoogleLocation" />
+                <ScalarProperty Name="FCMToken" ColumnName="FCMToken" />
+                <ScalarProperty Name="IsVerified" ColumnName="IsVerified" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="LatLong" ColumnName="LatLong" />
+                <ScalarProperty Name="LatLong2" ColumnName="LatLong2" />
+                <ScalarProperty Name="LatLong3" ColumnName="LatLong3" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetTotalCoupon" FunctionName="GGJWEventModel.Store.GetTotalCoupon">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GGJWEventModel.GetTotalCoupon_Result">
+                <ScalarProperty Name="PersonName" ColumnName="PersonName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="Pending" ColumnName="Pending" />
+                <ScalarProperty Name="Assign" ColumnName="Assign" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

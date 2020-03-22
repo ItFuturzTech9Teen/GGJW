@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "MegaDrawWinnerList";
+}
+
+
+<script src="~/Js/GGJWEvemt/Services/HomeService.js"></script>
+<script src="~/Js/GGJWEvemt/Controllers/MegaDrawWinnerList.js"></script>
+<div class="container-fluid" ng-controller="MegaDrawWinnerListController">
+    <!-- Breadcrumb-->
+    <div class="row pt-2 pb-2">
+        <div class="col-sm-9">
+            <h4 class="page-title">Winner List</h4>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javaScript:void();">GGJWEvent</a></li>
+                <li class="breadcrumb-item"><a href="javaScript:void();">Masters</a></li>
+                <li class="breadcrumb-item active" aria-current="page">MegaDraw Winner List</li>
+            </ol>
+        </div>
+    </div>
+    <!-- End Breadcrumb-->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h4 class="card-title" style="font-size:20px;">Winner List</h4>
+                                </div>
+                            </div>
+                            <div class="table-responsive ">
+                                <table datatable="ng" dt-options="vm.dtOptions" class="table table-hover table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>SrNo</th>
+                                            <th>CouponNo</th>
+                                            <th>DrawName</th>
+                                            <th>PersonName</th>
+                                            <th>Date</th>
+                                            <th>Winner Position</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="data in MegaDrawWinnerList">
+                                            <td>{{$index+1}}</td>
+                                            <td>{{data.CouponNo}}</td>
+                                            <td>{{data.DrawName}}</td>
+                                            <td>{{data.PersonName}}</td>
+                                            <td>{{data.Date}}</td>
+                                            <td>{{data.NumberOfResult}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+

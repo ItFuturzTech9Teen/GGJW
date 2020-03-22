@@ -1,0 +1,164 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="~/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Teko:400,500,600,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,500i,700,700i|Teko&display=swap" rel="stylesheet">
+    <link href="~/assets/css/animate.css" rel="stylesheet" type="text/css" />
+    <title>Hello, world!</title>
+    <style>
+        .footerlinks {
+            color: #ffffff;
+            text-decoration: none !important;
+        }
+
+            .footerlinks:hover {
+                color: #ffd800;
+            }
+
+        .winnertext {
+            font-weight: 500;
+            font-size: 40px;
+            color: #4c27a3;
+        }
+
+        .winnerno {
+            background-color: #ffd800;
+            font-family: 'Teko', sans-serif;
+            font-weight: 600;
+            font-size: 75px;
+            border: 2px solid #fa9747;
+            border-radius: 10px;
+            margin-bottom: 0px;
+            color: #482cc2;
+        }
+
+        #footer2 {
+            background: #272727;
+        }
+    </style>
+
+
+    <script src="~/Js/jquery.min.js"></script>
+    <script src="~/Js/jquery.timeago.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+    <script src="~/Js/ng-tags-input.js"></script>
+    <script src="~/Js/angular-filter.js"></script>
+    <script src="~/Js/angular-touch.min.js"></script>
+    <script src="~/Js/angular-cookies1_4_0.js"></script>
+    <script src="~/Js/angular-ipcookies.js"></script>
+    <script src="~/Js/angular-local-storage.js"></script>
+    <script src="~/Js/msc-script.js"></script>
+    <script src="~/Js/angular-drag-and-drop-lists.js"></script>
+    <script src="~/Js/paging.js"></script>
+    <script src="~/Js/angular-drag-and-drop-lists.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.20.0/select.css" rel="stylesheet" />
+    <link rel="stylesheet" href="http://mbenford.github.io/ngTagsInput/css/ng-tags-input.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.20.0/select.js"></script>
+    <script src="~/assets/angular.min.js"></script>
+    <script src="~/assets/angular-datatables.min.js"></script>
+    <script src="~/assets/jquery.dataTables.min.js"></script>
+    <link href="~/assets/datatables.bootstrap.css" rel="stylesheet" />
+    <script src="~/Js/GGJWEvemt/GGJWEvemt.js"></script>
+    <script src="~/Js/GGJWEvemt/Directive.js"></script>
+    <script src="~/Js/GGJWEvemt/Filter.js"></script>
+
+    <script src="~/Js/GGJWEvemt/Services/HomeService.js"></script>
+    <script src="~/Js/GGJWEvemt/Controllers/MegaDrawResult.js"></script>
+</head>
+
+<body style="background:#313131;" ng-app="GGJWEventModule">
+    <div class="container-fluid" ng-controller="MegaDrawResultController">
+        <center>
+            <br />
+            <h1 style="color:white;">LUCKY DRAWER WINNER !</h1>
+            <br />
+        </center>
+        <div class="row">
+            <div class="col-md-12 mx-auto text-center">
+                <div class="row mx-auto">
+                    <div class="col-md-3  mx-auto" ng-repeat="draw in MegaDrawCardList">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <img id="img1" src="~/assets/{{draw.CapImage}}" width="150px" class="img-fluid p-1">
+                                    </div>
+                                </div>
+                                <div class="row mt-1">
+                                    <div class="col">
+                                        <p class="winnertext" style="margin-bottom: 0px;">{{draw.NumberOfResult}}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <hr>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col form-group input-group-lg">
+                                        <h1 id="winnertext1" class="display-4 winnerno">{{draw.CouponNo}}</h1>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col form-group input-group-lg">
+                                        <input type="button" value="DRAW" class="btn btn-lg btn-success btn-block" ng-click="OpenTheDraw(draw.Id)" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal fade" id="modal">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content animated flip">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Draw Winner</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <center>
+                                    <img src="{{CustomerImage}}" width="100px" style="border-radius:100px;" />
+                                    <h1>
+                                        {{CustomerName}}
+                                    </h1>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script src="~/assets/bootstrap/js/jquery-3.3.1.slim.min.js"></script>
+    <script src="~/assets/bootstrap/js/popper.min.js"></script>
+    <script src="~/assets/bootstrap/js/bootstrap.min.js"></script>
+
+
+
+</body>
+
+</html>

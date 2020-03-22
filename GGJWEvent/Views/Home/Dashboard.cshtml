@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewBag.Title = "Dashboard";
+}
+<script src="~/Js/GGJWEvemt/Services/HomeService.js"></script>
+<script src="~/Js/GGJWEvemt/Controllers/DashBoard.js"></script>
+
+
+<script src="~/assets/js/index.js"></script>
+<div class="container-fluid" ng-controller="DashBoardController">
+    <div>
+        <!--Start Dashboard Content-->
+        <div class="row mt-3">
+            <div class="col-12 col-lg-6 col-xl-3">
+                <a href="~/ExhibitorList">
+                    <div class="card gradient-deepblue">
+                        <div class="card-body">
+                            <h5 class="text-white mb-0">{{ExhibitorCount}}<span class="float-right"><i class="fa fa-users"></i></span></h5>
+                            <div class="progress my-3" style="height: 3px;">
+                                <div class="progress-bar" style="width: {{ExhibitorPer}}%"></div>
+                            </div>
+                            <p class="mb-0 text-white small-font">Total Exhibitors</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-12 col-lg-6 col-xl-3">
+                <a href="~/CustomerList">
+                    <div class="card gradient-orange">
+                        <div class="card-body">
+                            <h5 class="text-white mb-0">{{CustomerCount}}<span class="float-right"><i class="fa fa-users"></i></span></h5>
+                            <div class="progress my-3" style="height: 3px;">
+                                <div class="progress-bar" style="width: {{CustomerPer}}%"></div>
+                            </div>
+                            <p class="mb-0 text-white small-font">Total Visitors</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-12 col-lg-6 col-xl-3">
+                <a href="~/DrawList">
+                    <div class="card gradient-ohhappiness">
+                        <div class="card-body">
+                            <h5 class="text-white mb-0">{{DailyDrawCount}}<span class="float-right"><i class="fa fa-trophy"></i></span></h5>
+                            <div class="progress my-3" style="height: 3px;">
+                                <div class="progress-bar" style="width: {{DailyDrawPer}}%"></div>
+                            </div>
+                            <p class="mb-0 text-white small-font">Total Draw</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-12 col-lg-6 col-xl-3">
+                <a href="~/DrawWinner">
+                    <div class="card gradient-ibiza">
+                        <div class="card-body">
+                            <h5 class="text-white mb-0">{{DrawCount}}<span class="float-right"><i class="fa fa-trophy"></i></span></h5>
+                            <div class="progress my-3" style="height: 3px;">
+                                <div class="progress-bar" style="width: {{DrawPer}}%"></div>
+                            </div>
+                            <p class="mb-0 text-white small-font">Total Winner</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <!--End Row-->
+    </div>
+</div>

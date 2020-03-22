@@ -1,0 +1,121 @@
+﻿
+@{
+    ViewBag.Title = "AssignCoupon";
+}
+
+<script src="~/Js/GGJWEvemt/Services/HomeService.js"></script>
+<script src="~/Js/GGJWEvemt/Controllers/AssignCoupon.js"></script>
+<div class="container-fluid">
+    <!-- Breadcrumb-->
+    <div class="row pt-2 pb-2">
+        <div class="col-sm-9">
+            <h4 class="page-title">Assign Coupon To Exhibitor</h4>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javaScript:void();">GGJWEvent</a></li>
+                <li class="breadcrumb-item"><a href="javaScript:void();">Masters</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Assign Coupon To Exhibitor</li>
+            </ol>
+        </div>
+    </div>
+    <!-- End Breadcrumb-->
+    <div ng-controller="AssignCouponController">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h4 class="card-title" style="font-size:20px;">DATA</h4>
+                            </div>
+                            <div class="col-md-3" align="right">
+                                <button class="btn btn-dark btn-block m-1" data-toggle="modal" data-target="#largesizemodal"><i class="fa fa-list"></i>AssignCoupon</button><br />
+                            </div>
+                        </div>
+                        <div class="table-responsive ">
+                            <table datatable="ng" dt-options="vm.dtOptions" class="table table-hover table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>SrNo</th>
+                                        <th>Date</th>
+                                        <th>ExhibitorName</th>
+                                        <th>Price</th>
+                                        <th>Qty</th>
+                                        <th>Total</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="data in AssignCouponList">
+                                        <td>{{$index+1}}</td>
+                                        <td>{{data.Date}}</td>
+                                        <td>{{data.PersonName}}</td>
+                                        <td>{{data.Price}}</td>
+                                        <td>{{data.Qty}}</td>
+                                        <td>{{data.Total}}</td>
+                                        <td>
+                                            <button type="button" class="btn btn-info btn-sm " data-toggle="modal" data-target="#largesizemodal" ng-click="Edit(data)"><i class="fa fa-pencil-square-o"></i></button>
+                                            <button type="button" class="btn btn-danger btn-sm " ng-click="DeleteAssignCoupon(data.Id)"><i class="fa fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="modal fade" id="largesizemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" style="display: none;" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel1">Assign Coupon</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <form ng-submit="SaveAssignCoupon()">
+                                        <h4 class="form-header text-uppercase">Exhibitor</h4>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="validationCustom01">ExhibitorName</label>
+                                                    <div>
+                                                        <select class="form-control ng-pristine ng-valid ng-touched" ng-model="ExhibitorId"
+                                                                ng-options="data.Id as data.PersonName for data in ExhibitorList">
+                                                            <option value="" disabled="" ng-selected="true" class="" selected="selected"> Select</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Price</label>
+                                                    <input type="text" class="form-control" value="1000" ng-model="Price">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Qty</label>
+                                                    <input type="text" class="form-control" required="" autocomplete="off" ng-model="Qty" ng-keyup="mykeyupfun()">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Total</label>
+                                                    <input class="form-control" id="result" name="result" autocomplete="off" ng-model="Total">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary"><i class="fa fa-check-square-o"></i>Submit</button>
+                                            <button type="button" class="btn btn-dark" data-dismiss="modal" ng-click="Clearall()"><i class="fa fa-times"></i> Close</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

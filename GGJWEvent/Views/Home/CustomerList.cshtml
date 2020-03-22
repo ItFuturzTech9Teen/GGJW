@@ -1,0 +1,127 @@
+﻿
+@{
+    ViewBag.Title = "CustomerList";
+}
+
+<script src="~/Js/GGJWEvemt/Services/HomeService.js"></script>
+<script src="~/Js/GGJWEvemt/Controllers/CustomerList.js"></script>
+
+<div class="container-fluid">
+    <!-- Breadcrumb-->
+    <div class="row pt-2 pb-2">
+        <div class="col-sm-9">
+            <h4 class="page-title">CustomerList</h4>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javaScript:void();">GGJWEvent</a></li>
+                <li class="breadcrumb-item"><a href="javaScript:void();">Masters</a></li>
+                <li class="breadcrumb-item active" aria-current="page">CustomerList</li>
+            </ol>
+        </div>
+    </div>
+    <!-- End Breadcrumb-->
+    <div ng-controller="CustomerListController">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <h4 class="card-title" style="font-size:20px;">CustomerList</h4>
+                                    </div>
+                                    <div class="col-md-4" style="padding-bottom:15px;">
+                                        <input type="text" id="" class="form-control" placeholder="Search Here" ng-model="searchText"/>
+                                    </div>
+                                    <div class="col-md-4" align="right">
+                                         <input type="button" value="Export to Excel" id="btnexport" class="btn btn-info btn-sm"  ng-click="exportData()" />
+                                    </div>
+                                </div>
+                                <div class="table-responsive " id="export">
+                                    <table  class="table table-hover table-striped table-bordered table2excel">
+                                        <thead>
+                                            <tr>
+                                                <th>SrNo</th>
+                                                <th>Image</th>
+                                                <th>VisitorName</th>
+                                                <th>CompanyName</th>
+                                                <th>MobileNo</th>
+                                                <th>Email</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="data in CustomerList | filter:searchText" >
+                                                <td>{{$index+1}}</td>
+                                                <td><img src="{{data.Image}}" width="100px" /></td>
+                                                <td>{{data.PersonName}}</td>
+                                                <td>{{data.CompanyName}}</td>
+                                                <td>{{data.MobileNo}}</td>
+                                                <td>{{data.Email}}</td>
+                                                <td>
+                                                    <button type="button" ng-click="CustomerDetails(data)" class="btn btn-info btn-sm " data-toggle="modal" data-target="#modal"><i class="fa fa-list-ol"></i></button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="modal fade" id="modal">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">CustomerList</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <h4 class="card-title" style="font-size:20px;">DATA</h4>
+                                        </div>
+                                    </div>
+                                    <div class="table-responsive " id="export">
+                                        <table class="table table-hover table-striped table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>Designation</th>
+                                                    <th>TelephoneNo</th>
+                                                    <th>Country</th>
+                                                    <th>State</th>
+                                                    <th>City</th>
+                                                    <th>Address</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="e in CustomerDetailsList">
+                                                    <td>{{e.Designation}}</td>
+                                                    <td>{{e.TelephoneNo}}</td>
+                                                    <td>{{e.Country}}</td>
+                                                    <td>{{e.State}}</td>
+                                                    <td>{{e.City}}</td>
+                                                    <td>{{e.Address}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.js"></script>
+
+

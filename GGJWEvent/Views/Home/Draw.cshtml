@@ -1,0 +1,125 @@
+﻿
+@{
+    ViewBag.Title = "Draw";
+}
+
+<script src="~/Js/GGJWEvemt/Services/HomeService.js"></script>
+<script src="~/Js/GGJWEvemt/Controllers/Draw.js"></script>
+<div class="container-fluid">
+    <!-- Breadcrumb-->
+    <div class="row pt-2 pb-2">
+        <div class="col-sm-9">
+            <h4 class="page-title">Draw</h4>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javaScript:void();">GGJWEvent</a></li>
+                <li class="breadcrumb-item"><a href="javaScript:void();">Masters</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Draw</li>
+            </ol>
+        </div>
+    </div>
+    <!-- End Breadcrumb-->
+    <div ng-controller="DrawController">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <h4 class="card-title" style="font-size:20px;">DATA</h4>
+                                    </div>
+                                    <div class="col-md-3" align="right">
+                                        <button class="btn btn-primary btn-block m-1" data-toggle="modal" data-target="#largesizemodal"><i class="fa fa-list"></i>Add Draw</button><br />
+                                    </div>
+                                </div>
+                                <div class="table-responsive ">
+                                    <table datatable="ng" dt-options="vm.dtOptions" class="table table-hover table-striped table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>SrNo</th>
+                                                <th>DrawName</th>
+                                                <th>Date</th>
+                                                <th>DrawCount</th>
+                                                <th>Prize</th>
+                                                <th>Image</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="data in DrawList">
+                                                <td>{{$index+1}}</td>
+                                                <td>{{data.DrawName}}</td>
+                                                <td>{{data.Date}}</td>
+                                                <td>{{data.DrawCount}}</td>
+                                                <td>{{data.Prize}}</td>
+                                                <td><img src="{{data.Image}}" width="100px"/></td>
+                                                <td>
+                                                    <button type="button" class="btn btn-info btn-sm " data-toggle="modal" data-target="#largesizemodal" ng-click="Edit(data)"><i class="fa fa-pencil-square-o"></i></button>
+                                                    <button type="button" class="btn btn-danger btn-sm " ng-click="DeleteDailyDraw(data.Id)"><i class="fa fa-trash"></i></button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="modal fade" id="largesizemodal">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Draw</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <form ng-submit="SaveDraw()">
+                                        <h4 class="form-header text-uppercase">Draw</h4>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>DrawName</label>
+                                                    <input type="text" class="form-control" required="" autocomplete="off" ng-model="DrawName">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Date</label>
+                                                    <input type="date" class="form-control" required="" autocomplete="off" ng-model="Date">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>DrawCount</label>
+                                                    <input type="text" class="form-control" required="" autocomplete="off" ng-model="DrawCount">
+
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Prize</label>
+                                                    <input type="text" class="form-control" required="" autocomplete="off" ng-model="Prize">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Image</label>
+                                                    <file name="image" ng-model="myFile" accept="image/png,image/jpg,image/jpeg" /> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary"><i class="fa fa-check-square-o"></i>Submit</button>
+                                            <button type="button" class="btn btn-dark" data-dismiss="modal" ng-click="Clearall()"><i class="fa fa-times"></i> Close</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

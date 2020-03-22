@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "DrawList";
+}
+<script src="~/Js/GGJWEvemt/Services/HomeService.js"></script>
+<script src="~/Js/GGJWEvemt/Controllers/Draw.js"></script>
+<div class="container-fluid">
+    <!-- Breadcrumb-->
+    <div class="row pt-2 pb-2">
+        <div class="col-sm-9">
+            <h4 class="page-title">DrawList</h4>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javaScript:void();">GGJWEvent</a></li>
+                <li class="breadcrumb-item"><a href="javaScript:void();">Masters</a></li>
+                <li class="breadcrumb-item active" aria-current="page">DrawList</li>
+            </ol>
+        </div>
+    </div>
+    <!-- End Breadcrumb-->
+    <div ng-controller="DrawController">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <h4 class="card-title" style="font-size:20px;">DATA</h4>
+                                    </div>
+                                    <div class="table-responsive ">
+                                        <table datatable="ng" dt-options="vm.dtOptions" class="table table-hover table-striped table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>SrNo</th>
+                                                    <th>DrawName</th>
+                                                    <th>Date</th>
+                                                    <th>DrawCount</th>
+                                                    <th>Prize</th>
+                                                    <th>Image</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="data in DrawList">
+                                                    <td>{{$index+1}}</td>
+                                                    <td>{{data.DrawName}}</td>
+                                                    <td>{{data.Date}}</td>
+                                                    <td>{{data.DrawCount}}</td>
+                                                    <td>{{data.Prize}}</td>
+                                                    <td><img src="{{data.Image}}" width="100px"/></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+

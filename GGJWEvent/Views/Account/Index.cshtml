@@ -1,0 +1,135 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>GGJWEvent</title>
+    <!--favicon-->
+    <link rel="icon" href="~/assets/images/logo.png" type="image/x-icon" />
+    <!-- Vector CSS -->
+    <link href="~/assets/plugins/vectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet" />
+    <!-- simplebar CSS-->
+    <link href="~/assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
+    <!-- Bootstrap core CSS-->
+    <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- animate CSS-->
+    <link href="~/assets/css/animate.css" rel="stylesheet" type="text/css" />
+    <!-- Icons CSS-->
+    <link href="~/assets/css/icons.css" rel="stylesheet" type="text/css" />
+    <!-- Sidebar CSS-->
+    <link href="~/assets/css/sidebar-menu.css" rel="stylesheet" />
+    <!-- Custom Style-->
+    <link href="~/assets/css/app-style.css" rel="stylesheet" />
+    <!-- skins CSS-->
+    <link href="~/assets/css/skins.css" rel="stylesheet" />
+    <!-- skins CSS-->
+    <link href="~/assets/css/skins.css" rel="stylesheet" />
+    <!-- Scripts -->
+    <script src="~/Js/angular1_4_2.js"></script>
+    <script src="~/Js/jquery.min.js"></script>
+    <script src="~/Js/jquery.timeago.js"></script>
+    <script src="~/Js/ng-tags-input.js"></script>
+    <script src="~/Js/angular-filter.js"></script>
+    <script src="~/Js/angular-touch.min.js"></script>
+    <script src="~/Js/angular-cookies1_4_0.js"></script>
+    <script src="~/Js/angular-ipcookies.js"></script>
+    <script src="~/Js/angular-local-storage.js"></script>
+    <script src="~/Js/msc-script.js"></script>
+    <script src="~/Js/angular-drag-and-drop-lists.js"></script>
+    <script src="~/Js/paging.js"></script>
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.6.10/angular-sanitize.js"></script>*@
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.20.0/select.css" rel="stylesheet" />
+    <link rel="stylesheet" href="http://mbenford.github.io/ngTagsInput/css/ng-tags-input.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.20.0/select.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <!-- Index js -->
+    <script src="~/assets/angular.min.js"></script>
+    <script src="~/assets/angular-datatables.min.js"></script>
+    <script src="~/assets/jquery.dataTables.min.js"></script>
+    <link href="~/assets/datatables.bootstrap.css" rel="stylesheet" />
+    <script src="~/Js/GGJWEvemt/GGJWEvemt.js"></script>
+    <script src="~/Js/GGJWEvemt/Services/HomeService.js"></script>
+    <script src="~/Js/GGJWEvemt/Services/AccountService.js"></script>
+    <script src="~/Js/GGJWEvemt/Controllers/Login.js"></script>
+    <script src="~/Js/GGJWEvemt/Controllers/Home.js"></script>
+    <script src="~/Js/GGJWEvemt/Filter.js"></script>
+    <script src="~/Js/GGJWEvemt/Directive.js"></script>
+</head>
+<body ng-app="GGJWEventModule">
+    <div id="pageloader-overlay" class="visible incoming">
+        <div class="loader-wrapper-outer">
+            <div class="loader-wrapper-inner">
+                <div class="loader">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" style="padding-top:60px;">
+        <div class="row" ng-controller="LoginController">
+            <div class="col-12">
+                <div class="card card-authentication1 mx-auto my-4">
+                    <div class="card-body">
+                        <div class="card-content p-2">
+                            <div class="text-center">
+                                <img src="~/assets/images/logo.png" width="100px" alt="logo icon">
+                            </div>
+                            <div class="card-title text-uppercase text-center py-3">Admin Panel</div>
+                            <form align="center" ng-submit="LoginAdmin()">
+                                <div class="form-group">
+                                    <label for="exampleInputName" class="sr-only">UserName</label>
+                                    <div class="position-relative has-icon-right">
+                                        <input type="text" id="exampleInputName" class="form-control input-shadow" placeholder="Enter Your UserName" ng-model="UserName">
+                                        <div class="form-control-position">
+                                            <i class="icon-user"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword" class="sr-only">Password</label>
+                                    <div class="position-relative has-icon-right">
+                                        <input type="password" id="exampleInputPassword" class="form-control input-shadow" placeholder="Choose Password" ng-model="Password">
+                                        <div class="form-control-position">
+                                            <i class="icon-lock"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-dark btn-block waves-effect waves-light">Login<i class="icon-arrow-right14 position-right"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <!-- simplebar js -->
+    <script src="~/assets/plugins/simplebar/js/simplebar.js"></script>
+    <!-- sidebar-menu js -->
+    <script src="~/assets/js/sidebar-menu.js"></script>
+    <!-- Custom scripts -->
+    <script src="~/assets/js/app-script.js"></script>
+
+    <!-- Chart js -->
+    <script src="~/assets/plugins/Chart.js/Chart.min.js"></script>
+    <!-- Vector map JavaScript -->
+    <script src="~/assets/plugins/vectormap/jquery-jvectormap-2.0.2.min.js"></script>
+    <script src="~/assets/plugins/vectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <!-- Easy Pie Chart JS -->
+    <script src="~/assets/plugins/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
+    <!-- Sparkline JS -->
+    <script src="~/assets/plugins/sparkline-charts/jquery.sparkline.min.js"></script>
+    <script src="~/assets/plugins/jquery-knob/excanvas.js"></script>
+    <script src="~/assets/plugins/jquery-knob/jquery.knob.js"></script>
+    <!-- Index js -->
+</body>
+</html>
+

@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "MegaDraws";
+}
+
+<script src="~/Js/GGJWEvemt/Services/HomeService.js"></script>
+<script src="~/Js/GGJWEvemt/Controllers/MegaDraws.js"></script>
+<script src="~/assets/js/index.js"></script>
+<div class="container-fluid">
+    <style>
+    </style>
+    <!-- Breadcrumb-->
+    <div class="row pt-2 pb-2">
+        <div class="col-sm-12">
+            <h4 class="page-title">Mega Draw</h4>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javaScript:void();">GGJWEvent</a></li>
+                <li class="breadcrumb-item"><a href="javaScript:void();">Masters</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Mega Draw</li>
+            </ol>
+        </div>
+    </div>
+    <!-- End Breadcrumb-->
+    <div ng-controller="MegaDrawsController">
+        <div class="row">
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 mx-auto text-center">
+                    <div class="row mx-auto">
+                        <div class="col-4 mx-auto">
+                            <form>
+                                <div class="form-group">
+                                    <label for="validationCustom01"> Today's Draw</label>
+                                    <select class="form-control ng-pristine ng-valid ng-touched" ng-model="Drawselected" ng-change="DrawChange()" required>
+                                        <option value="" selected>~Select Draw~</option>
+                                        <option ng-repeat="sel in MegaDrawList" ng-selected="Drawselected == sel.Id" value="{{sel.Id}}">{{sel.DrawName}}</option>
+                                    </select>
+                                    <br />
+                                    <button type="button" class="btn btn-block btn-success" ng-click="DrawNow()">
+                                        Create Draw Results
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <br />
+                    <br />
+                    <h1 style="color:red;">
+                        {{DrawNotice}}
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

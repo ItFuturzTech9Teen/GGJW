@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewBag.Title = "CustomerCouponDetail";
+}
+
+<script src="~/Js/GGJWEvemt/Services/HomeService.js"></script>
+<script src="~/Js/GGJWEvemt/Controllers/CustomerCouponDetail.js"></script>
+
+<div class="container-fluid">
+    <!-- Breadcrumb-->
+    <div class="row pt-2 pb-2">
+        <div class="col-sm-9">
+            <h4 class="page-title">CustomerCouponDetail</h4>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javaScript:void();">GGJWEvent</a></li>
+                <li class="breadcrumb-item"><a href="javaScript:void();">Masters</a></li>
+                <li class="breadcrumb-item active" aria-current="page">CustomerCouponDetail</li>
+            </ol>
+        </div>
+    </div>
+    <!-- End Breadcrumb-->
+    <div ng-controller="CustomerCouponDetailController">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <h4 class="card-title" style="font-size:20px;">CustomerCouponDetail</h4>
+                                    </div>
+                                    <div class="col-md-4" style="padding-bottom:15px;">
+                                        <input type="text" id="" class="form-control" placeholder="Search Here" ng-model="searchText" />
+                                    </div>
+                                    <div class="col-md-4" align="right">
+                                        <input type="button" value="Export to Excel" id="btnexport" class="btn btn-info btn-sm" ng-click="exportData()" />
+                                    </div>
+                                </div>
+                                <div class="table-responsive" id="export">
+                                    <table class="table table-hover table-striped table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>SrNo</th>
+                                                <th>CustomerName</th>
+                                                <th>ExhibitorName</th>
+                                                <th>Date</th>
+                                                <th>CouponNo</th>
+                                                <th>IsActive</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="data in CustomerCouponDetailList | filter:searchText">
+                                                <td>{{$index+1}}</td>
+                                                <td>{{data.PersonName}}</td>
+                                                <td>{{data.ExhibitorName}}</td>
+                                                <td>{{data.Date |  date:'dd-MM-yyyy'}}</td>
+                                                <td>{{data.CouponNo}}</td>
+                                                <td>{{data.IsActive}}</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-dark btn-sm " ng-click="UpdateCouponStatus(data)"><i class="fa fa-pencil-square-o"></i></button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.js"></script>

@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewBag.Title = "StateCity";
+}
+
+<script src="~/Js/GGJWEvemt/Services/HomeService.js"></script>
+<script src="~/Js/GGJWEvemt/Controllers/StateCity.js"></script>
+
+<div class="container-fluid">
+    <!-- Breadcrumb-->
+    <div class="row pt-2 pb-2">
+        <div class="col-sm-9">
+            <h4 class="page-title">State & City</h4>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javaScript:void();">GGJWEvent</a></li>
+                <li class="breadcrumb-item"><a href="javaScript:void();">Masters</a></li>
+                <li class="breadcrumb-item active" aria-current="page">State & City</li>
+            </ol>
+        </div>
+    </div>
+    <!-- End Breadcrumb-->
+    <div class="row" ng-controller="StateController">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header text-uppercase">State</div>
+                <div class="card-body">
+                    <form ng-submit="SaveState()">
+                        <div class="form-group">
+                            <label>Enter State</label>
+                            <input type="text" ng-model="Title" class="form-control" required />
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" name="submitbtn" class="btn btn-primary" />
+                            <input type="reset" name="resetbutton" class="btn btn-danger" />
+                        </div>
+                    </form>
+                    <div class="table-responsive">
+                        <table datatable="ng" dt-options="vm.dtOptions" class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>SRNO</th>
+                                    <th>STATE</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="state in StateList">
+                                    <td>{{$index+1}}</td>
+                                    <td>{{state.Title}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header text-uppercase">City</div>
+                <div class="card-body">
+                    <form ng-submit="SaveCity()">
+                        <div class="form-group">
+                            <label>Enter State</label>
+                            <select class="form-control" ng-model="stateselectbox" required>
+                                <option value="" selected>~Select~</option>
+                                <option ng-repeat="sel in StateList" ng-selected="stateselectbox == sel.Id" value="{{sel.Id}}">{{sel.Title}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Enter City</label>
+                            <input type="text" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" name="name" class="btn btn-primary" />
+                            <input type="reset" name="name" class="btn btn-danger" />
+                        </div>
+                    </form>
+
+                    <div class="table-responsive">
+                        <table datatable="ng" dt-options="vm.dtOptions" class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>SRNO</th>
+                                    <th>STATE</th>
+                                    <th>CITY</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="city in CitiesList">
+                                    <td>{{$index+1}}</td>
+                                    <td>{{city.StateName}}</td>
+                                    <td>{{city.Title}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
