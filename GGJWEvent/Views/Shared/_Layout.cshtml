@@ -125,17 +125,17 @@
                     </a>
                     <ul class="sidebar-submenu">
                         <li><a href="Exhibitor"><i class="zmdi zmdi-dot-circle-alt"></i>Exhibitor</a></li>
-                        <li><a href="ExhibitorOffer"><i class="zmdi zmdi-dot-circle-alt"></i>ExhibitorOffer</a></li>
+                        <li><a href="ExhibitorOffer"><i class="zmdi zmdi-dot-circle-alt"></i>Exhibitor Offers</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="javaScript:void();" class="waves-effect">
-                        <i class="fa fa-tag fa-lg"></i><span>AssignCoupon</span>
+                        <i class="fa fa-tag fa-lg"></i><span>Assign Coupon</span>
                         <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="sidebar-submenu">
-                        <li><a href="AssignCoupon"><i class="zmdi zmdi-dot-circle-alt"></i>AssignCoupon</a></li>
-                        <li><a href="RequestAndAssign"><i class="zmdi zmdi-dot-circle-alt"></i>RequestCouponList</a></li>
+                        <li><a href="AssignCoupon"><i class="zmdi zmdi-dot-circle-alt"></i>Assign Coupon</a></li>
+                        <li><a href="RequestAndAssign"><i class="zmdi zmdi-dot-circle-alt"></i>Request Coupon List</a></li>
 
                     </ul>
                 </li>
@@ -156,20 +156,20 @@
                 </li>
                 <li>
                     <a href="javaScript:void();" class="waves-effect">
-                        <i class="fa fa-file"></i><span>Report</span>
+                        <i class="fa fa-file"></i><span>Reports</span>
                         <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="sidebar-submenu">
-                        <li><a href="HistoryCoupon"><i class="zmdi zmdi-dot-circle-alt"></i>HistoryCoupon</a></li>
-                        <li><a href="CustomerList"><i class="zmdi zmdi-dot-circle-alt"></i>CustomerList</a></li>
-                        <li><a href="ExhibitorList"><i class="zmdi zmdi-dot-circle-alt"></i>ExhibitorList</a></li>
-                        <li><a href="ApplyCouponList"><i class="zmdi zmdi-dot-circle-alt"></i>AssignCouponList</a></li>
-                        <li><a href="CustomerCouponHistory"><i class="zmdi zmdi-dot-circle-alt"></i>CustomerCouponHistory</a></li>
+                        <li><a href="HistoryCoupon"><i class="zmdi zmdi-dot-circle-alt"></i>History Coupon</a></li>
+                        <li><a href="CustomerList"><i class="zmdi zmdi-dot-circle-alt"></i>Customer List</a></li>
+                        <li><a href="ExhibitorList"><i class="zmdi zmdi-dot-circle-alt"></i>Exhibitor List</a></li>
+                        <li><a href="ApplyCouponList"><i class="zmdi zmdi-dot-circle-alt"></i>Assign Coupon List</a></li>
+                        <li><a href="CustomerCouponHistory"><i class="zmdi zmdi-dot-circle-alt"></i>Customer Coupon History</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="CustomerCouponDetail" class="waves-effect">
-                        <i class="fa fa-tag"></i><span>CustomerCouponDetail</span>
+                        <i class="fa fa-tag"></i><span>Customer Coupon Detail</span>
                     </a>
                 </li>
                 <li>
@@ -200,34 +200,6 @@
                     </li>
                 </ul>
 
-                <ul class="navbar-nav align-items-center right-nav-link">
-
-                    <li class="nav-item">
-                        <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
-                            <span class="user-profile">
-                                <img src="~/assets/images/avatars/avatar-13.png" class="img-circle" alt="user avatar">
-                            </span>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-right">
-                            <li class="dropdown-item user-details">
-                                <a href="javaScript:void();">
-                                    <div class="media">
-                                        <div class="avatar">
-                                            <img class="align-self-start mr-3" src="~/assets/images/avatars/avatar-13.png" alt="user avatar">
-                                        </div>
-                                        <div class="media-body">
-                                            <h6 class="mt-2 user-title">{{LoginUser.Name}}</h6>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="dropdown-divider"></li>
-                            <li class="dropdown-item"><i class="icon-settings mr-2"></i>Setting</li>
-                            <li class="dropdown-divider"></li>
-                            <li class="dropdown-item" ng-click="logOutUser()"><i class="icon-power mr-2"></i>Logout</li>
-                        </ul>
-                    </li>
-                </ul>
             </nav>
         </header>
         <!--End topbar header-->
@@ -235,7 +207,6 @@
 
         <div class="content-wrapper">
             @RenderBody()
-            
             <div class="overlay toggle-menu"></div>
         </div>
         <!--End content-wrapper-->
