@@ -713,6 +713,28 @@ namespace GGJWEvent.Controllers
             }
         }
        
+        [HttpGet]
+        public ResultData DeleteCustomer(string Id)
+        {
+            ResultData resultData = new ResultData();
+            try
+            {
+                string a = string.Format("DELETE FROM Customer WHERE Id='{0}'",Id);
+                sf.ExecuteQuery(a);
+
+                resultData.Message = "Data Deleted Successfully !";
+                resultData.Data = 1;
+                resultData.IsSuccess = true;
+                return resultData;
+            }
+            catch (Exception ex)
+            {
+                resultData.Message = ex.Message.ToString();
+                resultData.Data = 0;
+                resultData.IsSuccess = false;
+                return resultData;
+            }
+        }
         #endregion
 
         #region AssignCouponList

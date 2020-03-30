@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>GGJWEvent</title>
+    <title>Gujarat Gold Jewellery Week Event</title>
     <!--favicon-->
     <link rel="icon" href="~/assets/images/logo.png" type="image/x-icon" />
     <!-- Vector CSS -->
@@ -33,6 +33,29 @@
     <link href="~/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Teko:400,500,600,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,500i,700,700i|Teko&display=swap" rel="stylesheet">
+    <style>
+        .sidebar-menu>li>a
+        {
+            font-size:13px;
+            text-decoration:none;
+        }
+        .user-details .media .avatar img.side-user-img
+        {
+            box-shadow:0 16px 38px -12px rgba(255, 255, 255, 0), 0 0px 0px 0 rgba(0, 0, 0, 0), 0 8px 10px -5px rgba(0, 0, 0, 0);
+        }
+        #asdef
+        {
+            margin-top:0px;
+        }
+        .form-group
+        {
+            margin-bottom: 0.6rem;
+        }
+        .sidebar-menu .sidebar-submenu>li>a
+        {
+            text-decoration:none;
+        }
+    </style>
     <!-- Scripts -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -96,46 +119,49 @@
     <div id="wrapper" >
         <!--Start sidebar-wrapper-->
         <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
-            <div class="brand-logo bg-theme bg-theme1">
-                <a href="index-2.html">
-                    <h5 class="logo-text" style="color:white;"><b>GGJWEvent</b></h5>
-                </a>
+            <div class="brand-logo" style="line-height:0px;">
+                <div style="margin-top:12px;line-height:20px;text-align:left;margin-left:22px;">
+                    <h5 class="logo-text" style="line-height:20px;text-align:left;font-weight:bold;">Gujarat Gold <br />Jewellery Week Event</h5>
+                </div>
             </div>
             <div class="user-details" ng-controller="HomeController">
-                <div class="media align-items-center user-pointer collapsed" data-toggle="collapse" data-target="#user-dropdown">
+                <div class="media align-items-center  collapsed" data-toggle="collapse" data-target="#user-dropdown">
                     <div class="avatar">
-                        <img class="mr-3 side-user-img" src="~/assets/images/avatars/avatar-13.png" alt="user avatar">
+                        <img class="mr-3 side-user-img" src="https://icons.iconarchive.com/icons/paomedia/small-n-flat/512/user-male-icon.png" alt="user avatar">
                     </div>
                     <div class="media-body">
-                        <h6 class="side-user-name">{{LoginUser.Name}}</h6>
+                        <div id="asdef">{{LoginUser.Name}}</div>
                     </div>
                 </div>
             </div>
             <ul class="sidebar-menu" ng-controller="HomeController">
-                <li class="sidebar-header">MAIN NAVIGATION</li>
+                <li class="sidebar-header">MENU</li>
                 <li>
                     <a href="Dashboard" class="waves-effect">
-                        <i class="fa fa-dashboard"></i><span>Dashboard</span>
+                        <i class="fa fa-tv"></i><span>Dashboard</span>
                     </a>
                 </li>
                 <li>
                     <a href="javaScript:void();" class="waves-effect">
-                        <i class="fa fa-users"></i><span>Exhibitor</span>
+                        <i class="fa fa-user-plus"></i><span>Exhibitors</span>
                         <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="sidebar-submenu">
-                        <li><a href="Exhibitor"><i class="zmdi zmdi-dot-circle-alt"></i>Exhibitor</a></li>
+                        <li><a href="Exhibitor"><i class="zmdi zmdi-dot-circle-alt"></i>Manage Exhibitor</a></li>
                         <li><a href="ExhibitorOffer"><i class="zmdi zmdi-dot-circle-alt"></i>Exhibitor Offers</a></li>
+                        <li><a href="ExhibitorList"><i class="zmdi zmdi-dot-circle-alt"></i>Exhibitors Report</a></li>
+                        <li><a href="HistoryCoupon"><i class="zmdi zmdi-dot-circle-alt"></i>Exhibotors History Coupon</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="javaScript:void();" class="waves-effect">
-                        <i class="fa fa-tag fa-lg"></i><span>Assign Coupon</span>
+                        <i class="fa fa-ticket"></i><span>Assign Coupon</span>
                         <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="sidebar-submenu">
                         <li><a href="AssignCoupon"><i class="zmdi zmdi-dot-circle-alt"></i>Assign Coupon</a></li>
                         <li><a href="RequestAndAssign"><i class="zmdi zmdi-dot-circle-alt"></i>Request Coupon List</a></li>
+                        <li><a href="ApplyCouponList"><i class="zmdi zmdi-dot-circle-alt"></i>Assign Coupon Report</a></li>
 
                     </ul>
                 </li>
@@ -145,47 +171,56 @@
                         <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="sidebar-submenu">
-                        <li><a href="Draw"><i class="zmdi zmdi-dot-circle-alt"></i>Add New Draw</a></li>
-                        <li><a href="MegaDraw"><i class="zmdi zmdi-dot-circle-alt"></i>Add New MegaDraw</a></li>
-                        <li><a href="DrawList"><i class="zmdi zmdi-dot-circle-alt"></i>Draw List</a></li>
-                        <li><a href="DailyDraw"><i class="zmdi zmdi-dot-circle-alt"></i>Open Daily Draw </a></li>
-                        <li><a href="MegaDraws"><i class="zmdi zmdi-dot-circle-alt"></i>Open Mega Draw </a></li>
-                        <li><a href="DrawWinner"><i class="zmdi zmdi-dot-circle-alt"></i>Draw Winners List</a></li>
-                        <li><a href="MegaDrawWinnerList"><i class="zmdi zmdi-dot-circle-alt"></i>MegaDraw Winners List</a></li>
+                        <li>
+                            <a href="javaScript:void();"><i class="zmdi zmdi-dot-circle-alt"></i>Manage Draws<i class="fa fa-angle-left pull-right"></i></a>
+                            <ul class="sidebar-submenu">
+                                <li><a href="Draw"><i class="zmdi zmdi-dot-circle-alt"></i>Daily Draw </a></li>
+                                <li><a href="MegaDraw"><i class="zmdi zmdi-dot-circle-alt"></i>Mega Draw </a></li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="javaScript:void();"><i class="zmdi zmdi-dot-circle-alt"></i>Open Draws<i class="fa fa-angle-left pull-right"></i></a>
+                            <ul class="sidebar-submenu">
+                                <li><a href="DailyDraw"><i class="zmdi zmdi-dot-circle-alt"></i>Daily Draw </a></li>
+                                <li><a href="MegaDraws"><i class="zmdi zmdi-dot-circle-alt"></i>Mega Draw </a></li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="javaScript:void();"><i class="zmdi zmdi-dot-circle-alt"></i>Draws Winners <i class="fa fa-angle-left pull-right"></i></a>
+                            <ul class="sidebar-submenu">
+                                <li><a href="DrawWinner"><i class="zmdi zmdi-dot-circle-alt"></i>Daily Draw </a></li>
+                                <li><a href="MegaDrawWinnerList"><i class="zmdi zmdi-dot-circle-alt"></i>Mega Draw </a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </li>
                 <li>
                     <a href="javaScript:void();" class="waves-effect">
-                        <i class="fa fa-file"></i><span>Reports</span>
+                        <i class="fa fa-users"></i><span>Customers</span>
                         <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="sidebar-submenu">
-                        <li><a href="HistoryCoupon"><i class="zmdi zmdi-dot-circle-alt"></i>History Coupon</a></li>
-                        <li><a href="CustomerList"><i class="zmdi zmdi-dot-circle-alt"></i>Customer List</a></li>
-                        <li><a href="ExhibitorList"><i class="zmdi zmdi-dot-circle-alt"></i>Exhibitor List</a></li>
-                        <li><a href="ApplyCouponList"><i class="zmdi zmdi-dot-circle-alt"></i>Assign Coupon List</a></li>
+                        <li><a href="CustomerList"><i class="zmdi zmdi-dot-circle-alt"></i>Customers Report</a></li>
+                        <li><a href="CustomerCouponDetail"><i class="zmdi zmdi-dot-circle-alt"></i>Customer Coupons</a></li>
                         <li><a href="CustomerCouponHistory"><i class="zmdi zmdi-dot-circle-alt"></i>Customer Coupon History</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="CustomerCouponDetail" class="waves-effect">
-                        <i class="fa fa-tag"></i><span>Customer Coupon Detail</span>
-                    </a>
-                </li>
-                <li>
                     <a href="SendNotification" class="waves-effect">
-                        <i class="fa fa-envelope"></i><span>Send Notification</span>
+                        <i class="fa fa-paper-plane"></i><span>Send Notification</span>
                     </a>
                 </li>
-                <li class="sidebar-header">EXTRA TOOLS</li>
-                <li><a href="javaScript:void();" ng-click="logOutUser()" class="waves-effect"><i class="zmdi zmdi-sign-in text-danger"></i><span>Logout</span></a></li>
+                <li class="sidebar-header">EXTRA</li>
+                <li><a href="javaScript:void();" data-toggle="modal" data-target="#logoutModal" class="waves-effect"><i class="zmdi zmdi-sign-in text-danger"></i><span>Logout</span></a></li>
             </ul>
 
         </div>
         <!--End sidebar-wrapper-->
         <!--Start topbar header-->
         <header class="topbar-nav" ng-controller="HomeController">
-            <nav id="header-setting" class="navbar navbar-expand fixed-top color-header bg-theme1">
+            <nav id="header-setting" class="navbar navbar-expand fixed-top">
                 <ul class="navbar-nav mr-auto align-items-center">
                     <li class="nav-item">
                         <a class="nav-link toggle-menu" href="javascript:void();">
@@ -208,6 +243,26 @@
         <div class="content-wrapper">
             @RenderBody()
             <div class="overlay toggle-menu"></div>
+        </div>
+
+        <div class="modal fade" id="logoutModal">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Logout</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h6>Do You Really Want to Logout?</h6>
+                        <br />
+                        <div align="right">
+                            <a href="" ng-click="logOutUser()" class="btn btn-danger btn-sm">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <!--End content-wrapper-->
         <!--Start Back To Top Button-->

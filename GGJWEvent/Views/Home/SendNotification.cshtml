@@ -8,12 +8,9 @@
 <div class="container-fluid">
     <!-- Breadcrumb-->
     <div class="row pt-2 pb-2">
-        <div class="col-sm-9">
-            <h4 class="page-title">SendNotification</h4>
+        <div class="col-sm-12">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="javaScript:void();">GGJWEvent</a></li>
-                <li class="breadcrumb-item"><a href="javaScript:void();">Masters</a></li>
-                <li class="breadcrumb-item active" aria-current="page">SendNotification</li>
+                <li class="breadcrumb-item active" aria-current="page">Send Notification</li>
             </ol>
 
         </div>
@@ -27,9 +24,9 @@
                     <div class="row">
                         <div class="col-12">
                             <form ng-submit="SendNotification()">
-                                <h4 class="form-header text-uppercase">SendNotification</h4>
+                                <div class="form-group" style="font-size:20px;">Send Notification</div>
                                 <div class="form-group">
-                                    <label for="validationCustom01"></label>
+                                    <label for="validationCustom01">Send To</label>
                                     <div>
                                         <select class="form-control ng-pristine ng-valid ng-touched" ng-change="GetDataList()" ng-model="Type">
                                             <option value="" selected="selected"> Select</option>
@@ -47,11 +44,11 @@
                                         <textarea type="text" class="form-control" id="Message" required="" autocomplete="off" ng-model="Message">
                                         </textarea>
                                 </div>
-                                <div class="form-footer">
-                                    <button type="submit" class="btn btn-success">Submit</button>
-                                    <button type="reset" class="btn btn-danger">Clear</button>
-
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-sm btn-success">Submit</button>
+                                    <button type="reset" class="btn btn-sm btn-danger">Clear</button>
                                 </div>
+                                
                             </form>
                         </div>
                     </div>
@@ -63,7 +60,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-12">
-                            <h4><b>DATA</b></h4>
+                            <h6>DATA</h6>
                             <div class="table-responsive ">
                                 <table datatable="ng" dt-options="vm.dtOptions" class="table table-hover table-striped table-bordered">
                                     <thead>

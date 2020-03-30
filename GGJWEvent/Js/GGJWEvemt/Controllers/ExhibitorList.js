@@ -29,7 +29,7 @@
 
     $scope.ExhibitorDetails = function (scope) {
         $('#modal').modal();
-        var myjosn = [{ "Designation": scope.Designation, "TelephoneNo": scope.TelephoneNo, "Address": scope.Address, "CityName": scope.CityName, "StateName": scope.StateName, "Country": scope.Country }];
+        var myjosn = [{ "Image": scope.Image, "Designation": scope.Designation, "TelephoneNo": scope.TelephoneNo, "Address": scope.Address, "CityName": scope.CityName, "StateName": scope.StateName, "Country": scope.Country }];
         $scope.ExhibitorDetailsList = myjosn;
     }
 

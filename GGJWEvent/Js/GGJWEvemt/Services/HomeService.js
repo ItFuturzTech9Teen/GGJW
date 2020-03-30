@@ -111,6 +111,18 @@
         });
     }
 
+    this.CustomerDelete = function (Id, scope) {
+        var DeleteCity = $http.get(API_URL + '/HomeAPI/DeleteCustomer?Id=' + Id);
+        DeleteCity.then(function (data) {
+            var data = data.data;
+            if (data.IsSuccess === true) {
+                alert("Deleted Successfully !");
+                scope.GetCustomerList();
+            } else {
+                alert("Data Not Deleted !");
+            }
+        });
+    }
 
     //Exhibitor
     this.GetExhibitor = function () {
