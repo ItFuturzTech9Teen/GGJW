@@ -12,6 +12,34 @@ namespace GGJWEvent.Models
         public bool IsSuccess { get; set; }
     }
 
+    public class GetExhibitorDatalists
+    {
+        public long Id { get; set; }
+        public string PersonName { get; set; }
+        public string Designation { get; set; }
+        public string CompanyName { get; set; }
+        public string Country { get; set; }
+        public string TelephoneNo { get; set; }
+        public string MobileNo { get; set; }
+        public string Email { get; set; }
+        public string FCMToken { get; set; }
+        public Nullable<bool> IsVerified { get; set; }
+        public string Image { get; set; }
+        public List<GetExhibitorAddresses> AddressList { get; set; }
+    }
+
+    public class GetExhibitorAddresses
+    {
+        public long Id { get; set; }
+        public string Address { get; set; }
+        public string Latlong { get; set; }
+        public string StateName { get; set; }
+        public string CityName { get; set; }
+        public long StateId { get; set; }
+        public long CityId { get; set; }
+        public long ExhibitorId { get; set; }
+    }
+
     public class notification_person_list
     {
         public int Id { get; set; }

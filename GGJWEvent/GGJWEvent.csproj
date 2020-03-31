@@ -1118,6 +1118,9 @@
     <Compile Include="Models\AssignCouponExhibitor.cs">
       <DependentUpon>GGJWEventModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\BannerMaster.cs">
+      <DependentUpon>GGJWEventModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\City.cs">
       <DependentUpon>GGJWEventModel.tt</DependentUpon>
     </Compile>
@@ -1139,6 +1142,9 @@
     </Compile>
     <Compile Include="Models\ErrorLog.cs" />
     <Compile Include="Models\Exhibitor.cs">
+      <DependentUpon>GGJWEventModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ExhibitorAddress.cs">
       <DependentUpon>GGJWEventModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ExhibitorBanner.cs">
@@ -1211,9 +1217,6 @@
       <DependentUpon>GGJWEventModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GetExhibitorByCustomerCoupon_Result.cs">
-      <DependentUpon>GGJWEventModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GetExhibitorData_Result.cs">
       <DependentUpon>GGJWEventModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GetExhibitorLoginData_Result.cs">

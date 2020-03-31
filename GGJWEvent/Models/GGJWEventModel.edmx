@@ -38,6 +38,14 @@
           <Property Name="Total" Type="nvarchar(max)" />
           <Property Name="Date" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="BannerMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Image" Type="varchar(max)" />
+          <Property Name="Description" Type="varchar(max)" />
+        </EntityType>
         <EntityType Name="City">
           <Key>
             <PropertyRef Name="Id" />
@@ -112,22 +120,25 @@
           <Property Name="PersonName" Type="nvarchar(max)" />
           <Property Name="Designation" Type="nvarchar" MaxLength="100" />
           <Property Name="CompanyName" Type="nvarchar(max)" />
-          <Property Name="Address" Type="nvarchar(max)" />
-          <Property Name="Address1" Type="nvarchar(max)" />
-          <Property Name="Address2" Type="nvarchar(max)" />
-          <Property Name="CityId" Type="bigint" />
-          <Property Name="StateId" Type="bigint" />
           <Property Name="Country" Type="nvarchar" MaxLength="100" />
           <Property Name="TelephoneNo" Type="nvarchar(max)" />
           <Property Name="MobileNo" Type="nvarchar(max)" />
           <Property Name="Email" Type="nvarchar(max)" />
-          <Property Name="GoogleLocation" Type="nvarchar(max)" />
           <Property Name="FCMToken" Type="nvarchar(max)" />
           <Property Name="IsVerified" Type="bit" />
           <Property Name="Image" Type="nvarchar(max)" />
-          <Property Name="LatLong" Type="nvarchar" MaxLength="200" />
-          <Property Name="LatLong2" Type="nvarchar" MaxLength="200" />
-          <Property Name="LatLong3" Type="nvarchar" MaxLength="200" />
+          <Property Name="GoogleLocation" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ExhibitorAddress">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="Latlong" Type="nvarchar" MaxLength="50" />
+          <Property Name="StateId" Type="bigint" />
+          <Property Name="CityId" Type="bigint" />
+          <Property Name="ExhibitorId" Type="bigint" />
         </EntityType>
         <EntityType Name="ExhibitorBanner">
           <Key>
@@ -293,6 +304,7 @@
           <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ApplyCoupon" EntityType="Self.ApplyCoupon" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AssignCouponExhibitor" EntityType="Self.AssignCouponExhibitor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BannerMaster" EntityType="Self.BannerMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CustomerCoupon" EntityType="Self.CustomerCoupon" Schema="dbo" store:Type="Tables" />
@@ -300,6 +312,7 @@
           <EntitySet Name="Draw" EntityType="Self.Draw" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DrawWinner" EntityType="Self.DrawWinner" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Exhibitor" EntityType="Self.Exhibitor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExhibitorAddress" EntityType="Self.ExhibitorAddress" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ExhibitorBanner" EntityType="Self.ExhibitorBanner" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ExhibitorCouponQty" EntityType="Self.ExhibitorCouponQty" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MegaDraw" EntityType="Self.MegaDraw" Schema="dbo" store:Type="Tables" />
@@ -469,12 +482,14 @@
           <Parameter Name="ExhibitorId" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="GetCouponDetail" ReturnType="Collection(GGJWEventModel.GetCouponDetail_Result)" />
-          <EntitySet Name="Exhibitors" EntityType="GGJWEventModel.Exhibitor" />
           <FunctionImport Name="GetExhibitorLoginData" ReturnType="Collection(GGJWEventModel.GetExhibitorLoginData_Result)">
           <Parameter Name="Mobile" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="GetExhibitorData" ReturnType="Collection(GGJWEventModel.GetExhibitorData_Result)" />
           <FunctionImport Name="GetTotalCoupon" ReturnType="Collection(GGJWEventModel.GetTotalCoupon_Result)" />
+          <EntitySet Name="BannerMasters" EntityType="GGJWEventModel.BannerMaster" />
+          <EntitySet Name="ExhibitorAddresses" EntityType="GGJWEventModel.ExhibitorAddress" />
+          <EntitySet Name="Exhibitors" EntityType="GGJWEventModel.Exhibitor" />
+          <FunctionImport Name="GetExhibitorData" />
         </EntityContainer>
         <EntityType Name="DrawWinner">
           <Key>
@@ -875,31 +890,6 @@
           <Property Type="String" Name="ExhibitorName" Nullable="true" />
           <Property Type="DateTime" Name="Date" Nullable="true" />
         </ComplexType>
-        <EntityType Name="Exhibitor">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PersonName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Designation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="CompanyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Address1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Address2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CityId" Type="Int64" />
-          <Property Name="StateId" Type="Int64" />
-          <Property Name="Country" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="TelephoneNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="MobileNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="GoogleLocation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="FCMToken" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IsVerified" Type="Boolean" />
-          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="LatLong" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="LatLong2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="LatLong3" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-        </EntityType>
         <ComplexType Name="GetExhibitorLoginData_Result">
           <Property Type="Int64" Name="Id" Nullable="false" />
           <Property Type="String" Name="PersonName" Nullable="true" />
@@ -925,30 +915,6 @@
           <Property Type="String" Name="CityName" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="Banner" Nullable="true" />
         </ComplexType>
-        <ComplexType Name="GetExhibitorData_Result">
-          <Property Type="Int64" Name="Id" Nullable="false" />
-          <Property Type="String" Name="PersonName" Nullable="true" />
-          <Property Type="String" Name="Designation" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="CompanyName" Nullable="true" />
-          <Property Type="String" Name="Address" Nullable="true" />
-          <Property Type="String" Name="Address1" Nullable="true" />
-          <Property Type="String" Name="Address2" Nullable="true" />
-          <Property Type="Int64" Name="CityId" Nullable="true" />
-          <Property Type="Int64" Name="StateId" Nullable="true" />
-          <Property Type="String" Name="Country" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="TelephoneNo" Nullable="true" />
-          <Property Type="String" Name="MobileNo" Nullable="true" />
-          <Property Type="String" Name="Email" Nullable="true" />
-          <Property Type="String" Name="GoogleLocation" Nullable="true" />
-          <Property Type="String" Name="FCMToken" Nullable="true" />
-          <Property Type="Boolean" Name="IsVerified" Nullable="true" />
-          <Property Type="String" Name="Image" Nullable="true" />
-          <Property Type="String" Name="LatLong" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="LatLong2" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="LatLong3" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="StateName" Nullable="true" MaxLength="300" />
-          <Property Type="String" Name="CityName" Nullable="true" MaxLength="100" />
-        </ComplexType>
         <ComplexType Name="GetTotalCoupon_Result">
           <Property Type="String" Name="PersonName" Nullable="true" />
           <Property Type="Int64" Name="Id" Nullable="false" />
@@ -958,6 +924,42 @@
           <Property Type="Int32" Name="Assign" Nullable="true" />
           <Property Type="Int32" Name="Total" Nullable="true" />
         </ComplexType>
+        <EntityType Name="BannerMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ExhibitorAddress">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Latlong" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StateId" Type="Int64" />
+          <Property Name="CityId" Type="Int64" />
+          <Property Name="ExhibitorId" Type="Int64" />
+        </EntityType>
+        <EntityType Name="Exhibitor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Designation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TelephoneNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MobileNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FCMToken" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsVerified" Type="Boolean" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GoogleLocation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1559,32 +1561,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <EntitySetMapping Name="Exhibitors">
-            <EntityTypeMapping TypeName="GGJWEventModel.Exhibitor">
-              <MappingFragment StoreEntitySet="Exhibitor">
-                <ScalarProperty Name="LatLong3" ColumnName="LatLong3" />
-                <ScalarProperty Name="LatLong2" ColumnName="LatLong2" />
-                <ScalarProperty Name="LatLong" ColumnName="LatLong" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="IsVerified" ColumnName="IsVerified" />
-                <ScalarProperty Name="FCMToken" ColumnName="FCMToken" />
-                <ScalarProperty Name="GoogleLocation" ColumnName="GoogleLocation" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
-                <ScalarProperty Name="TelephoneNo" ColumnName="TelephoneNo" />
-                <ScalarProperty Name="Country" ColumnName="Country" />
-                <ScalarProperty Name="StateId" ColumnName="StateId" />
-                <ScalarProperty Name="CityId" ColumnName="CityId" />
-                <ScalarProperty Name="Address2" ColumnName="Address2" />
-                <ScalarProperty Name="Address1" ColumnName="Address1" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
-                <ScalarProperty Name="Designation" ColumnName="Designation" />
-                <ScalarProperty Name="PersonName" ColumnName="PersonName" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="GetExhibitorLoginData" FunctionName="GGJWEventModel.Store.GetExhibitorLoginData">
             <ResultMapping>
               <ComplexTypeMapping TypeName="GGJWEventModel.GetExhibitorLoginData_Result">
@@ -1614,34 +1590,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetExhibitorData" FunctionName="GGJWEventModel.Store.GetExhibitorData">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="GGJWEventModel.GetExhibitorData_Result">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="PersonName" ColumnName="PersonName" />
-                <ScalarProperty Name="Designation" ColumnName="Designation" />
-                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Address1" ColumnName="Address1" />
-                <ScalarProperty Name="Address2" ColumnName="Address2" />
-                <ScalarProperty Name="CityId" ColumnName="CityId" />
-                <ScalarProperty Name="StateId" ColumnName="StateId" />
-                <ScalarProperty Name="Country" ColumnName="Country" />
-                <ScalarProperty Name="TelephoneNo" ColumnName="TelephoneNo" />
-                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="GoogleLocation" ColumnName="GoogleLocation" />
-                <ScalarProperty Name="FCMToken" ColumnName="FCMToken" />
-                <ScalarProperty Name="IsVerified" ColumnName="IsVerified" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="LatLong" ColumnName="LatLong" />
-                <ScalarProperty Name="LatLong2" ColumnName="LatLong2" />
-                <ScalarProperty Name="LatLong3" ColumnName="LatLong3" />
-                <ScalarProperty Name="StateName" ColumnName="StateName" />
-                <ScalarProperty Name="CityName" ColumnName="CityName" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetTotalCoupon" FunctionName="GGJWEventModel.Store.GetTotalCoupon">
             <ResultMapping>
               <ComplexTypeMapping TypeName="GGJWEventModel.GetTotalCoupon_Result">
@@ -1655,6 +1603,46 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="BannerMasters">
+            <EntityTypeMapping TypeName="GGJWEventModel.BannerMaster">
+              <MappingFragment StoreEntitySet="BannerMaster">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExhibitorAddresses">
+            <EntityTypeMapping TypeName="GGJWEventModel.ExhibitorAddress">
+              <MappingFragment StoreEntitySet="ExhibitorAddress">
+                <ScalarProperty Name="ExhibitorId" ColumnName="ExhibitorId" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="StateId" ColumnName="StateId" />
+                <ScalarProperty Name="Latlong" ColumnName="Latlong" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Exhibitors">
+            <EntityTypeMapping TypeName="GGJWEventModel.Exhibitor">
+              <MappingFragment StoreEntitySet="Exhibitor">
+                <ScalarProperty Name="GoogleLocation" ColumnName="GoogleLocation" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="IsVerified" ColumnName="IsVerified" />
+                <ScalarProperty Name="FCMToken" ColumnName="FCMToken" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="TelephoneNo" ColumnName="TelephoneNo" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="PersonName" ColumnName="PersonName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetExhibitorData" FunctionName="GGJWEventModel.Store.GetExhibitorData" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

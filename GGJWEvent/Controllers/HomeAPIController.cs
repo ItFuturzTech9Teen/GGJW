@@ -10,6 +10,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Text;
 using System.IO;
+using Newtonsoft.Json.Linq;
 
 namespace GGJWEvent.Controllers
 {
@@ -19,9 +20,165 @@ namespace GGJWEvent.Controllers
         StudyField sf = new StudyField();
 
         #region Exhibitor
+        //[ActionName("SaveExhibitor")]
+        //public ResultData SaveExhibitor()
+        //{
+        //    ResultData resultData = new ResultData();
+        //    try
+        //    {
+        //        var properties = Request.Properties as Dictionary<string, object>;
+        //        var requestObject = ((System.Web.HttpContextWrapper)(properties["MS_HttpContext"])).Request;
+        //        long Id = Convert.ToInt64(requestObject.Form["Id"]);
+        //        string MobileNo = Convert.ToString(requestObject.Form["MobileNo"]);
+        //        if (Id != null && Id == 0)
+        //        {
+        //            List<Exhibitor> customerList = new List<Exhibitor>();
+        //            customerList = db.Exhibitors.Where(n => n.MobileNo == MobileNo).ToList();
+        //            if (customerList.Count > 0)
+        //            {
+        //                resultData.Message = "Mobile Already Exist !";
+        //                resultData.IsSuccess = true;
+        //                resultData.Data = 0;
+        //                return resultData;
+        //            }
+        //        }
+
+        //        string[] paths = sf.Upload(requestObject, Constants.FileTypeExhibitor);
+
+        //        string PersonName = Convert.ToString(requestObject.Form["PersonName"]);
+        //        string Designation = Convert.ToString(requestObject.Form["Designation"]);
+        //        string CompanyName = Convert.ToString(requestObject.Form["CompanyName"]);
+        //        string Address = Convert.ToString(requestObject.Form["Address"]);
+        //        string Address1 = Convert.ToString(requestObject.Form["Address1"]);
+        //        string Address2 = Convert.ToString(requestObject.Form["Address2"]);
+        //        string Country = Convert.ToString(requestObject.Form["Country"]);
+        //        string TelephoneNo = Convert.ToString(requestObject.Form["TelephoneNo"]);
+        //        string Email = Convert.ToString(requestObject.Form["Email"]);
+        //        long StateId = Convert.ToInt64(requestObject.Form["StateId"]);
+        //        long CityId = Convert.ToInt64(requestObject.Form["CityId"]);
+        //        string GoogleLocation = Convert.ToString(requestObject.Form["GoogleLocation"]);
+        //        string LatLong = Convert.ToString(requestObject.Form["LatLong"]);
+        //        string LatLong2 = Convert.ToString(requestObject.Form["LatLong2"]);
+        //        string LatLong3 = Convert.ToString(requestObject.Form["LatLong3"]);
+        //        string Image = "";
+        //        if (requestObject.Files.AllKeys.Any())
+        //            Image = paths[0];
+
+        //        if (Id != null && Id == 0)
+        //        {
+        //            Exhibitor oldex = new Exhibitor();
+        //            oldex.MobileNo = MobileNo;
+        //            oldex.PersonName = PersonName;
+        //            oldex.StateId = StateId;
+        //            oldex.TelephoneNo = TelephoneNo;
+        //            oldex.Email = Email;
+        //            oldex.Designation = Designation;
+        //            oldex.Country = Country;
+        //            oldex.CityId = CityId;
+        //            oldex.Address = Address;
+        //            oldex.Address1 = Address1;
+        //            oldex.Address2 = Address2;
+        //            oldex.CompanyName = CompanyName;
+        //            oldex.GoogleLocation = GoogleLocation;
+        //            oldex.LatLong = LatLong;
+        //            oldex.LatLong2 = LatLong2;
+        //            oldex.LatLong3 = LatLong3;
+        //            oldex.Image = Image;
+        //            db.Exhibitors.Add(oldex);
+        //            db.SaveChanges();
+        //            DataTable dt = sf.GetData("SELECT TOP 1 * FROM Exhibitor ORDER BY Id DESC");
+        //            string Ids = dt.Rows[0]["Id"].ToString();
+        //            string str = string.Format("INSERT INTO AssignCouponExhibitor(ExhibitorId,Price,Qty,Total,Date) VALUES('{0}','{1}','{2}','{3}','{4}')", Ids, 0, 0, 0, DateTime.Now.ToString("yyyy-MM-dd"));
+        //            sf.ExecuteQuery(str);
+        //            DataTable dts = sf.GetData("SELECT TOP 1 * FROM AssignCouponExhibitor ORDER BY Id DESC");
+        //            string Idss = dts.Rows[0]["Id"].ToString();
+        //            string strs = string.Format("INSERT INTO ExhibitorCouponQty(AssignCouponExhibitorId,Qty) VALUES('{0}','{1}')", Idss, 0);
+        //            sf.ExecuteQuery(strs);
+        //        }
+        //        else if (Id > 0)
+        //        {
+        //            Exhibitor oldex = db.Exhibitors.Where(a => a.Id == Id).FirstOrDefault();
+        //            {
+        //                Exhibitor exh = new Exhibitor();
+        //                exh = db.Exhibitors.Where(e => e.Id == Id && e.MobileNo == MobileNo).FirstOrDefault();
+        //                if(exh != null)
+        //                {
+        //                    oldex.MobileNo = MobileNo;
+        //                    oldex.PersonName = PersonName;
+        //                    oldex.StateId = StateId;
+        //                    oldex.TelephoneNo = TelephoneNo;
+        //                    oldex.Email = Email;
+        //                    oldex.Designation = Designation;
+        //                    oldex.Country = Country;
+        //                    oldex.CityId = CityId;
+        //                    oldex.Address = Address;
+        //                    oldex.Address1 = Address1;
+        //                    oldex.Address2 = Address2;
+        //                    oldex.CompanyName = CompanyName;
+        //                    oldex.GoogleLocation = GoogleLocation;
+        //                    oldex.LatLong = LatLong;
+        //                    oldex.LatLong2 = LatLong2;
+        //                    oldex.LatLong3 = LatLong3;
+        //                    if (Image != "")
+        //                        oldex.Image = Image;
+        //                    db.SaveChanges();
+        //                }
+        //                else
+        //                {
+        //                    Exhibitor exhibi = new Exhibitor();
+        //                    exhibi = db.Exhibitors.Where(e => e.MobileNo == MobileNo).FirstOrDefault();
+        //                    if(exhibi != null)
+        //                    {
+        //                        resultData.Message = "Mobile Already Exist !";
+        //                        resultData.IsSuccess = true;
+        //                        resultData.Data = 0;
+        //                        return resultData;
+        //                    }
+        //                    else
+        //                    {
+        //                        oldex.MobileNo = MobileNo;
+        //                        oldex.PersonName = PersonName;
+        //                        oldex.StateId = StateId;
+        //                        oldex.TelephoneNo = TelephoneNo;
+        //                        oldex.Email = Email;
+        //                        oldex.Designation = Designation;
+        //                        oldex.Country = Country;
+        //                        oldex.CityId = CityId;
+        //                        oldex.Address = Address;
+        //                        oldex.Address1 = Address1;
+        //                        oldex.Address2 = Address2;
+        //                        oldex.CompanyName = CompanyName;
+        //                        oldex.GoogleLocation = GoogleLocation;
+        //                        oldex.LatLong = LatLong;
+        //                        oldex.LatLong2 = LatLong2;
+        //                        oldex.LatLong3 = LatLong3;
+        //                        if (Image != "")
+        //                            oldex.Image = Image;
+        //                        db.SaveChanges();
+        //                    }
+
+        //                }
+        //            }
+                  
+        //        }
+
+        //        resultData.Message = "Data Saved Successfully";
+        //        resultData.IsSuccess = true;
+        //        resultData.Data = "Image";
+        //        return resultData;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        resultData.Message = ex.Message.ToString();
+        //        resultData.IsSuccess = false;
+        //        resultData.Data = 0;
+        //        return resultData;
+        //    }
+        //}
+
         [HttpPost]
-        [ActionName("SaveExhibitor")]
-        public ResultData SaveExhibitor()
+        [ActionName("SaveExhibitorV1")]
+        public ResultData SaveExhibitorV1()
         {
             ResultData resultData = new ResultData();
             try
@@ -42,52 +199,44 @@ namespace GGJWEvent.Controllers
                         return resultData;
                     }
                 }
-
                 string[] paths = sf.Upload(requestObject, Constants.FileTypeExhibitor);
-
                 string PersonName = Convert.ToString(requestObject.Form["PersonName"]);
                 string Designation = Convert.ToString(requestObject.Form["Designation"]);
                 string CompanyName = Convert.ToString(requestObject.Form["CompanyName"]);
-                string Address = Convert.ToString(requestObject.Form["Address"]);
-                string Address1 = Convert.ToString(requestObject.Form["Address1"]);
-                string Address2 = Convert.ToString(requestObject.Form["Address2"]);
                 string Country = Convert.ToString(requestObject.Form["Country"]);
                 string TelephoneNo = Convert.ToString(requestObject.Form["TelephoneNo"]);
                 string Email = Convert.ToString(requestObject.Form["Email"]);
-                long StateId = Convert.ToInt64(requestObject.Form["StateId"]);
-                long CityId = Convert.ToInt64(requestObject.Form["CityId"]);
-                string GoogleLocation = Convert.ToString(requestObject.Form["GoogleLocation"]);
-                string LatLong = Convert.ToString(requestObject.Form["LatLong"]);
-                string LatLong2 = Convert.ToString(requestObject.Form["LatLong2"]);
-                string LatLong3 = Convert.ToString(requestObject.Form["LatLong3"]);
+                string Addresses = Convert.ToString(requestObject.Form["Addresses"]);
+                JArray jsonVal = JArray.Parse(Addresses) as JArray; ;
+               
                 string Image = "";
                 if (requestObject.Files.AllKeys.Any())
-                    Image = paths[0];
+                       Image = paths[0];
+
+
 
                 if (Id != null && Id == 0)
                 {
                     Exhibitor oldex = new Exhibitor();
                     oldex.MobileNo = MobileNo;
                     oldex.PersonName = PersonName;
-                    oldex.StateId = StateId;
                     oldex.TelephoneNo = TelephoneNo;
                     oldex.Email = Email;
                     oldex.Designation = Designation;
                     oldex.Country = Country;
-                    oldex.CityId = CityId;
-                    oldex.Address = Address;
-                    oldex.Address1 = Address1;
-                    oldex.Address2 = Address2;
                     oldex.CompanyName = CompanyName;
-                    oldex.GoogleLocation = GoogleLocation;
-                    oldex.LatLong = LatLong;
-                    oldex.LatLong2 = LatLong2;
-                    oldex.LatLong3 = LatLong3;
                     oldex.Image = Image;
                     db.Exhibitors.Add(oldex);
                     db.SaveChanges();
+
                     DataTable dt = sf.GetData("SELECT TOP 1 * FROM Exhibitor ORDER BY Id DESC");
                     string Ids = dt.Rows[0]["Id"].ToString();
+                    dynamic AddressesList = jsonVal;
+                    foreach (dynamic exhibitor in AddressesList)
+                    {
+                        string a = string.Format("INSERT INTO ExhibitorAddress(Address,Latlong,StateId,CityId,ExhibitorId) VALUES('{0}','{1}','{2}','{3}','{4}')", exhibitor.Address, exhibitor.Latlong,exhibitor.StateId,exhibitor.CityId, Ids);
+                        sf.ExecuteQuery(a);
+                    }
                     string str = string.Format("INSERT INTO AssignCouponExhibitor(ExhibitorId,Price,Qty,Total,Date) VALUES('{0}','{1}','{2}','{3}','{4}')", Ids, 0, 0, 0, DateTime.Now.ToString("yyyy-MM-dd"));
                     sf.ExecuteQuery(str);
                     DataTable dts = sf.GetData("SELECT TOP 1 * FROM AssignCouponExhibitor ORDER BY Id DESC");
@@ -101,33 +250,38 @@ namespace GGJWEvent.Controllers
                     {
                         Exhibitor exh = new Exhibitor();
                         exh = db.Exhibitors.Where(e => e.Id == Id && e.MobileNo == MobileNo).FirstOrDefault();
-                        if(exh != null)
+                        if (exh != null)
                         {
                             oldex.MobileNo = MobileNo;
                             oldex.PersonName = PersonName;
-                            oldex.StateId = StateId;
                             oldex.TelephoneNo = TelephoneNo;
                             oldex.Email = Email;
                             oldex.Designation = Designation;
                             oldex.Country = Country;
-                            oldex.CityId = CityId;
-                            oldex.Address = Address;
-                            oldex.Address1 = Address1;
-                            oldex.Address2 = Address2;
                             oldex.CompanyName = CompanyName;
-                            oldex.GoogleLocation = GoogleLocation;
-                            oldex.LatLong = LatLong;
-                            oldex.LatLong2 = LatLong2;
-                            oldex.LatLong3 = LatLong3;
                             if (Image != "")
                                 oldex.Image = Image;
                             db.SaveChanges();
+
+                            dynamic AddressesList = jsonVal;
+                            string aa = string.Format("SELECT * FROM ExhibitorAddress WHERE ExhibitorId='{0}'", Id);
+                            DataTable dte = sf.GetData(aa);
+                            if(dte.Rows.Count > 0)
+                            {
+                                string d = string.Format("DELETE FROM ExhibitorAddress WHERE ExhibitorId='{0}'", Id);
+                                sf.ExecuteQuery(d);
+                                foreach (dynamic exhibitor in AddressesList)
+                                {
+                                    string a = string.Format("INSERT INTO ExhibitorAddress(Address,Latlong,StateId,CityId,ExhibitorId) VALUES('{0}','{1}','{2}','{3}','{4}')", exhibitor.Address, exhibitor.Latlong, exhibitor.StateId, exhibitor.CityId, Id);
+                                    sf.ExecuteQuery(a);
+                                }
+                            }
                         }
                         else
                         {
                             Exhibitor exhibi = new Exhibitor();
                             exhibi = db.Exhibitors.Where(e => e.MobileNo == MobileNo).FirstOrDefault();
-                            if(exhibi != null)
+                            if (exhibi != null)
                             {
                                 resultData.Message = "Mobile Already Exist !";
                                 resultData.IsSuccess = true;
@@ -138,33 +292,39 @@ namespace GGJWEvent.Controllers
                             {
                                 oldex.MobileNo = MobileNo;
                                 oldex.PersonName = PersonName;
-                                oldex.StateId = StateId;
                                 oldex.TelephoneNo = TelephoneNo;
                                 oldex.Email = Email;
                                 oldex.Designation = Designation;
                                 oldex.Country = Country;
-                                oldex.CityId = CityId;
-                                oldex.Address = Address;
-                                oldex.Address1 = Address1;
-                                oldex.Address2 = Address2;
                                 oldex.CompanyName = CompanyName;
-                                oldex.GoogleLocation = GoogleLocation;
-                                oldex.LatLong = LatLong;
-                                oldex.LatLong2 = LatLong2;
-                                oldex.LatLong3 = LatLong3;
                                 if (Image != "")
                                     oldex.Image = Image;
                                 db.SaveChanges();
+
+                                dynamic AddressesList = jsonVal;
+                                string aa = string.Format("SELECT * FROM ExhibitorAddress WHERE ExhibitorId='{0}'", Id);
+                                DataTable dte = sf.GetData(aa);
+                                if (dte.Rows.Count > 0)
+                                {
+                                    string d = string.Format("DELETE FROM ExhibitorAddress WHERE ExhibitorId='{0}'", Id);
+                                    sf.ExecuteQuery(d);
+                                    foreach (dynamic exhibitor in AddressesList)
+                                    {
+                                        string a = string.Format("INSERT INTO ExhibitorAddress(Address,Latlong,StateId,CityId,ExhibitorId) VALUES('{0}','{1}','{2}','{3}','{4}')", exhibitor.Address, exhibitor.Latlong, exhibitor.StateId, exhibitor.CityId, Id);
+                                        sf.ExecuteQuery(a);
+                                    }
+                                }
                             }
 
                         }
                     }
-                  
+
                 }
+
 
                 resultData.Message = "Data Saved Successfully";
                 resultData.IsSuccess = true;
-                resultData.Data = "Image";
+                resultData.Data = 1;
                 return resultData;
             }
             catch (Exception ex)
@@ -185,7 +345,14 @@ namespace GGJWEvent.Controllers
                 Exhibitor oldex = db.Exhibitors.Where(a => a.Id == Id).FirstOrDefault();
                 db.Exhibitors.Remove(oldex);
                 db.SaveChanges();
-
+                sf.ExecuteQuery(string.Format("DELETE FROM ExhibitorAddress WHERE ExhibitorId='{0}'", Id));
+                DataTable dr = sf.GetData(string.Format("SELECT *  FROM AssignCouponExhibitor WHERE ExhibitorId='{0}'", Id));
+                foreach (DataRow item in dr.Rows)
+                {
+                    sf.ExecuteQuery(string.Format("DELETE FROM ExhibitorCouponQty WHERE AssignCouponExhibitorId='{0}'", item["Id"].ToString()));
+                    sf.ExecuteQuery(string.Format("DELETE FROM AssignCouponExhibitor WHERE ExhibitorId='{0}'", item["Id"].ToString()));
+                }
+                
                 resultData.Message = "Data Deleted Successfully";
                 resultData.IsSuccess = true;
                 resultData.Data = "1";
@@ -206,8 +373,45 @@ namespace GGJWEvent.Controllers
             ResultData resultData = new ResultData();
             try
             {
-                List<GetExhibitorData_Result> exhibitorList = new List<GetExhibitorData_Result>();
-                exhibitorList = db.GetExhibitorData().ToList();
+                List<GetExhibitorDatalists> exhibitorList = new List<GetExhibitorDatalists>();
+                string a = string.Format("SELECT * FROM Exhibitor");
+                DataTable der = sf.GetData(a);
+                foreach (DataRow item in der.Rows)
+                {
+                    GetExhibitorDatalists exhibitor = new GetExhibitorDatalists();
+                    exhibitor.Id = Convert.ToInt64(item["Id"]);
+                    exhibitor.PersonName = Convert.ToString(item["PersonName"]);
+                    exhibitor.Designation = Convert.ToString(item["Designation"]);
+                    exhibitor.CompanyName = Convert.ToString(item["CompanyName"]);
+                    exhibitor.Country = Convert.ToString(item["Country"]);
+                    exhibitor.TelephoneNo = Convert.ToString(item["TelephoneNo"]);
+                    exhibitor.MobileNo = Convert.ToString(item["MobileNo"]);
+                    exhibitor.Email = Convert.ToString(item["Email"]);
+                    exhibitor.FCMToken = Convert.ToString(item["FCMToken"]);
+                    exhibitor.IsVerified = item["IsVerified"] == DBNull.Value?false:Convert.ToBoolean(item["IsVerified"]);
+                    exhibitor.Image = Convert.ToString(item["Image"]);
+
+                    List<GetExhibitorAddresses> addlist = new List<GetExhibitorAddresses>();
+                    string b = string.Format("SELECT * FROM ExhibitorAddress WHERE ExhibitorId='{0}'",Convert.ToInt32(item["Id"]));
+                    DataTable dte = sf.GetData(b);
+                    foreach (DataRow items in dte.Rows)
+                    {
+                        GetExhibitorAddresses add = new GetExhibitorAddresses();
+                        add.Id = Convert.ToInt64(items["Id"]);
+                        add.Latlong = Convert.ToString(items["Latlong"]);
+                        add.Address = Convert.ToString(items["Address"]);
+                        add.StateId = Convert.ToInt64(items["StateId"]);
+                        DataTable StateNa = sf.GetData(string.Format("SELECT * FROM State WHERE Id='{0}'", add.StateId));
+                        add.StateName = StateNa.Rows[0]["Title"].ToString();
+                        add.CityId = Convert.ToInt64(items["CityId"]);
+                        DataTable CityNa = sf.GetData(string.Format("SELECT * FROM City WHERE Id='{0}'", add.CityId));
+                        add.CityName = CityNa.Rows[0]["Title"].ToString();
+                        add.ExhibitorId = Convert.ToInt64(items["ExhibitorId"]);
+                        addlist.Add(add);
+                    }
+                    exhibitor.AddressList = addlist;
+                    exhibitorList.Add(exhibitor);
+                }
                 if (exhibitorList != null)
                 {
                     resultData.Message = "Data Get Successfully";
@@ -652,9 +856,45 @@ namespace GGJWEvent.Controllers
             ResultData resultData = new ResultData();
             try
             {
+                List<GetExhibitorDatalists> exhibitorList = new List<GetExhibitorDatalists>();
+                string a = string.Format("SELECT * FROM Exhibitor");
+                DataTable der = sf.GetData(a);
+                foreach (DataRow item in der.Rows)
+                {
+                    GetExhibitorDatalists exhibitor = new GetExhibitorDatalists();
+                    exhibitor.Id = Convert.ToInt64(item["Id"]);
+                    exhibitor.PersonName = Convert.ToString(item["PersonName"]);
+                    exhibitor.Designation = Convert.ToString(item["Designation"]);
+                    exhibitor.CompanyName = Convert.ToString(item["CompanyName"]);
+                    exhibitor.Country = Convert.ToString(item["Country"]);
+                    exhibitor.TelephoneNo = Convert.ToString(item["TelephoneNo"]);
+                    exhibitor.MobileNo = Convert.ToString(item["MobileNo"]);
+                    exhibitor.Email = Convert.ToString(item["Email"]);
+                    exhibitor.FCMToken = Convert.ToString(item["FCMToken"]);
+                    exhibitor.IsVerified = item["IsVerified"] == DBNull.Value ? false : Convert.ToBoolean(item["IsVerified"]);
+                    exhibitor.Image = Convert.ToString(item["Image"]);
 
-                List<GetExhibitorData_Result> exhibitorList = new List<GetExhibitorData_Result>();
-                exhibitorList = db.GetExhibitorData().ToList();
+                    List<GetExhibitorAddresses> addlist = new List<GetExhibitorAddresses>();
+                    string b = string.Format("SELECT * FROM ExhibitorAddress WHERE ExhibitorId='{0}'", Convert.ToInt32(item["Id"]));
+                    DataTable dte = sf.GetData(b);
+                    foreach (DataRow items in dte.Rows)
+                    {
+                        GetExhibitorAddresses add = new GetExhibitorAddresses();
+                        add.Id = Convert.ToInt64(items["Id"]);
+                        add.Latlong = Convert.ToString(items["Latlong"]);
+                        add.Address = Convert.ToString(items["Address"]);
+                        add.StateId = Convert.ToInt64(items["StateId"]);
+                        DataTable StateNa = sf.GetData(string.Format("SELECT * FROM State WHERE Id='{0}'", add.StateId));
+                        add.StateName = StateNa.Rows[0]["Title"].ToString();
+                        add.CityId = Convert.ToInt64(items["CityId"]);
+                        DataTable CityNa = sf.GetData(string.Format("SELECT * FROM City WHERE Id='{0}'", add.CityId));
+                        add.CityName = CityNa.Rows[0]["Title"].ToString();
+                        add.ExhibitorId = Convert.ToInt64(items["ExhibitorId"]);
+                        addlist.Add(add);
+                    }
+                    exhibitor.AddressList = addlist;
+                    exhibitorList.Add(exhibitor);
+                }
                 if (exhibitorList != null)
                 {
                     resultData.Message = "Data Get Successfully";

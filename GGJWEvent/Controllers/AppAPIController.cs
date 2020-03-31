@@ -25,18 +25,55 @@ namespace GGJWEvent.Controllers
             {
                 if (type == "Exhibitor")
                 {
-                    List<GetExhibitorLoginData_Result> exhibitor = new List<GetExhibitorLoginData_Result>();
-                    exhibitor = db.GetExhibitorLoginData(mobile).ToList();
-                    if (exhibitor != null)
+                    List<GetExhibitorDatalists> exhibitorList = new List<GetExhibitorDatalists>();
+                    string a = string.Format("SELECT * FROM Exhibitor WHERE MobileNo='{0}'", mobile);
+                    DataTable der = sf.GetData(a);
+                    foreach (DataRow item in der.Rows)
                     {
-                        resultData.Message = "Data Get Successfully !";
+                        GetExhibitorDatalists exhibitor = new GetExhibitorDatalists();
+                        exhibitor.Id = Convert.ToInt64(item["Id"]);
+                        exhibitor.PersonName = Convert.ToString(item["PersonName"]);
+                        exhibitor.Designation = Convert.ToString(item["Designation"]);
+                        exhibitor.CompanyName = Convert.ToString(item["CompanyName"]);
+                        exhibitor.Country = Convert.ToString(item["Country"]);
+                        exhibitor.TelephoneNo = Convert.ToString(item["TelephoneNo"]);
+                        exhibitor.MobileNo = Convert.ToString(item["MobileNo"]);
+                        exhibitor.Email = Convert.ToString(item["Email"]);
+                        exhibitor.FCMToken = Convert.ToString(item["FCMToken"]);
+                        exhibitor.IsVerified = item["IsVerified"] == DBNull.Value ? false : Convert.ToBoolean(item["IsVerified"]);
+                        exhibitor.Image = Convert.ToString(item["Image"]);
+
+                        List<GetExhibitorAddresses> addlist = new List<GetExhibitorAddresses>();
+                        string b = string.Format("SELECT * FROM ExhibitorAddress WHERE ExhibitorId='{0}'", Convert.ToInt32(item["Id"]));
+                        DataTable dte = sf.GetData(b);
+                        foreach (DataRow items in dte.Rows)
+                        {
+                            GetExhibitorAddresses add = new GetExhibitorAddresses();
+                            add.Id = Convert.ToInt64(items["Id"]);
+                            add.Latlong = Convert.ToString(items["Latlong"]);
+                            add.Address = Convert.ToString(items["Address"]);
+                            add.StateId = Convert.ToInt64(items["StateId"]);
+                            DataTable StateNa = sf.GetData(string.Format("SELECT * FROM State WHERE Id='{0}'", add.StateId));
+                            add.StateName = StateNa.Rows[0]["Title"].ToString();
+                            add.CityId = Convert.ToInt64(items["CityId"]);
+                            DataTable CityNa = sf.GetData(string.Format("SELECT * FROM City WHERE Id='{0}'", add.CityId));
+                            add.CityName = CityNa.Rows[0]["Title"].ToString();
+                            add.ExhibitorId = Convert.ToInt64(items["ExhibitorId"]);
+                            addlist.Add(add);
+                        }
+                        exhibitor.AddressList = addlist;
+                        exhibitorList.Add(exhibitor);
+                    }
+                    if (exhibitorList != null)
+                    {
+                        resultData.Message = "Data Get Successfully";
                         resultData.IsSuccess = true;
-                        resultData.Data = exhibitor;
+                        resultData.Data = exhibitorList;
                         return resultData;
                     }
                     else
                     {
-                        resultData.Message = "Invalid Login Detail !";
+                        resultData.Message = "Invalid Exhibitor Detail";
                         resultData.IsSuccess = true;
                         resultData.Data = 0;
                         return resultData;
@@ -217,12 +254,47 @@ namespace GGJWEvent.Controllers
             ResultData resultData = new ResultData();
             try
             {
+                List<GetExhibitorDatalists> exhibitorList = new List<GetExhibitorDatalists>();
+                string a = string.Format("SELECT * FROM Exhibitor");
+                DataTable der = sf.GetData(a);
+                foreach (DataRow item in der.Rows)
+                {
+                    GetExhibitorDatalists exhibitor = new GetExhibitorDatalists();
+                    exhibitor.Id = Convert.ToInt64(item["Id"]);
+                    exhibitor.PersonName = Convert.ToString(item["PersonName"]);
+                    exhibitor.Designation = Convert.ToString(item["Designation"]);
+                    exhibitor.CompanyName = Convert.ToString(item["CompanyName"]);
+                    exhibitor.Country = Convert.ToString(item["Country"]);
+                    exhibitor.TelephoneNo = Convert.ToString(item["TelephoneNo"]);
+                    exhibitor.MobileNo = Convert.ToString(item["MobileNo"]);
+                    exhibitor.Email = Convert.ToString(item["Email"]);
+                    exhibitor.FCMToken = Convert.ToString(item["FCMToken"]);
+                    exhibitor.IsVerified = item["IsVerified"] == DBNull.Value ? false : Convert.ToBoolean(item["IsVerified"]);
+                    exhibitor.Image = Convert.ToString(item["Image"]);
 
-                List<GetExhibitorData_Result> exhibitorList = new List<GetExhibitorData_Result>();
-                exhibitorList = db.GetExhibitorData().ToList();
+                    List<GetExhibitorAddresses> addlist = new List<GetExhibitorAddresses>();
+                    string b = string.Format("SELECT * FROM ExhibitorAddress WHERE ExhibitorId='{0}'", Convert.ToInt32(item["Id"]));
+                    DataTable dte = sf.GetData(b);
+                    foreach (DataRow items in dte.Rows)
+                    {
+                        GetExhibitorAddresses add = new GetExhibitorAddresses();
+                        add.Id = Convert.ToInt64(items["Id"]);
+                        add.Latlong = Convert.ToString(items["Latlong"]);
+                        add.Address = Convert.ToString(items["Address"]);
+                        add.StateId = Convert.ToInt64(items["StateId"]);
+                        DataTable StateNa = sf.GetData(string.Format("SELECT * FROM State WHERE Id='{0}'", add.StateId));
+                        add.StateName = StateNa.Rows[0]["Title"].ToString();
+                        add.CityId = Convert.ToInt64(items["CityId"]);
+                        DataTable CityNa = sf.GetData(string.Format("SELECT * FROM City WHERE Id='{0}'", add.CityId));
+                        add.CityName = CityNa.Rows[0]["Title"].ToString();
+                        add.ExhibitorId = Convert.ToInt64(items["ExhibitorId"]);
+                        addlist.Add(add);
+                    }
+                    exhibitor.AddressList = addlist;
+                    exhibitorList.Add(exhibitor);
+                }
                 if (exhibitorList != null)
                 {
-
                     resultData.Message = "Data Get Successfully";
                     resultData.IsSuccess = true;
                     resultData.Data = exhibitorList;
@@ -243,7 +315,6 @@ namespace GGJWEvent.Controllers
                 resultData.Data = 0;
                 return resultData;
             }
-
         }
 
         [HttpGet]
@@ -327,16 +398,10 @@ namespace GGJWEvent.Controllers
                     dbExhibitor.PersonName = profiledata.PersonName;
                     dbExhibitor.MobileNo = profiledata.MobileNo;
                     dbExhibitor.Designation = profiledata.Designation;
-                    dbExhibitor.Address = profiledata.Address;
-                    dbExhibitor.Address1 = profiledata.Address1;
-                    dbExhibitor.Address2 = profiledata.Address2;
                     dbExhibitor.CompanyName = profiledata.CompanyName;
                     dbExhibitor.Designation = profiledata.Designation;
-                    dbExhibitor.CityId = profiledata.CityId;
-                    dbExhibitor.StateId = profiledata.StateId;
                     dbExhibitor.Country = profiledata.Country;
                     dbExhibitor.TelephoneNo = profiledata.TelephoneNo;
-                    dbExhibitor.GoogleLocation = profiledata.GoogleLocation;
                     dbExhibitor.Email = profiledata.Email;
                     db.SaveChanges();
                 }

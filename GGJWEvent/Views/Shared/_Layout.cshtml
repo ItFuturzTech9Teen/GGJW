@@ -147,9 +147,9 @@
                         <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="sidebar-submenu">
-                        <li><a href="Exhibitor"><i class="zmdi zmdi-dot-circle-alt"></i>Manage Exhibitor</a></li>
+                        <li><a href="Exhibitor"><i class="zmdi zmdi-dot-circle-alt"></i>Manage Exhibitors</a></li>
+                        <li><a href="ExhibitorList"><i class="zmdi zmdi-dot-circle-alt"></i>Exhibitors Reports</a></li>
                         <li><a href="ExhibitorOffer"><i class="zmdi zmdi-dot-circle-alt"></i>Exhibitor Offers</a></li>
-                        <li><a href="ExhibitorList"><i class="zmdi zmdi-dot-circle-alt"></i>Exhibitors Report</a></li>
                         <li><a href="HistoryCoupon"><i class="zmdi zmdi-dot-circle-alt"></i>Exhibotors History Coupon</a></li>
                     </ul>
                 </li>
@@ -213,7 +213,7 @@
                     </a>
                 </li>
                 <li class="sidebar-header">EXTRA</li>
-                <li><a href="javaScript:void();" data-toggle="modal" data-target="#logoutModal" class="waves-effect"><i class="zmdi zmdi-sign-in text-danger"></i><span>Logout</span></a></li>
+                <li><a href="#" data-toggle="modal" data-target="#logoutModal" class="waves-effect"><i class="zmdi zmdi-sign-in text-danger"></i><span>Logout</span></a></li>
             </ul>
 
         </div>
@@ -236,6 +236,25 @@
                 </ul>
 
             </nav>
+            <div class="modal fade" id="logoutModal">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Logout</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <h6>Do You Really Want to Logout?</h6>
+                            <br />
+                            <div align="right">
+                                <a href="javascript:void();" ng-click="logOutUser()" class="btn btn-danger btn-sm">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </header>
         <!--End topbar header-->
         <div class="clearfix"></div>
@@ -245,25 +264,7 @@
             <div class="overlay toggle-menu"></div>
         </div>
 
-        <div class="modal fade" id="logoutModal">
-            <div class="modal-dialog modal-sm">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Logout</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <h6>Do You Really Want to Logout?</h6>
-                        <br />
-                        <div align="right">
-                            <a href="" ng-click="logOutUser()" class="btn btn-danger btn-sm">Logout</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
         <!--End content-wrapper-->
         <!--Start Back To Top Button-->
         <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i></a>

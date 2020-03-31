@@ -28,19 +28,18 @@
                                         <h6 class="card-title">DATA</h6>
                                     </div>
                                     <div class="col-md-3" align="right">
-                                        <button class="btn btn-dark btn-sm btn-block m-1" data-toggle="modal" data-target="#largesizemodal" ng-click="AddExhibitor()"><i class="fa fa-plus"></i> Add Exhibitor</button><br />
+                                        <button class="btn btn-success btn-sm btn-block m-1" data-toggle="modal" data-target="#largesizemodal" ng-click="AddExhibitor()"><i class="fa fa-plus"></i> Add Exhibitor</button><br />
                                     </div>
                                 </div>
                                 <div class="table-responsive ">
                                     <table datatable="ng" dt-options="vm.dtOptions" class="table table-hover table-striped table-bordered">
                                         <thead>
                                             <tr>
-                                                <th>SrNo</th>
+                                                <th>NO</th>
                                                 <th>Image</th>
                                                 <th>PersonName</th>
                                                 <th>CompanyName</th>
                                                 <th>MobileNo</th>
-                                                <th>Email</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -51,7 +50,6 @@
                                                 <td>{{data.PersonName}}</td>
                                                 <td>{{data.CompanyName}}</td>
                                                 <td>{{data.MobileNo}}</td>
-                                                <td>{{data.Email}}</td>
                                                 <td>
                                                     <button type="button" class="btn btn-info btn-sm " ng-click="ExhibitorDetails(data)" data-toggle="modal" data-target="#modal"><i class="fa fa-list-ol"></i></button>
                                                     <button type="button" class="btn btn-info btn-sm " data-toggle="modal" data-target="#largesizemodal" ng-click="Edit(data)"><i class="fa fa-pencil-square-o"></i></button>
@@ -69,10 +67,10 @@
         </div>
         <div class="col-lg-4">
             <div class="modal fade" id="modal">
-                <div class="modal-dialog modal-xl">
+                <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Exhibitor</h5>
+                            <h5 class="modal-title">Exhibitor Other Details</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -89,22 +87,38 @@
                                         <table class="table table-hover table-striped table-bordered">
                                             <thead>
                                                 <tr>
+                                                    <th>Email</th>
                                                     <th>Designation</th>
                                                     <th>TelephoneNo</th>
                                                     <th>Country</th>
-                                                    <th>State</th>
-                                                    <th>City</th>
-                                                    <th>Address</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr ng-repeat="e in ExhibitorDetailsList">
+                                                    <td>{{e.Email}}</td>
                                                     <td>{{e.Designation}}</td>
                                                     <td>{{e.TelephoneNo}}</td>
                                                     <td>{{e.Country}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="table-responsive ">
+                                        <table class="table table-hover table-striped table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>Address</th>
+                                                    <th>Lat-Long</th>
+                                                    <th>State</th>
+                                                    <th>City</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="e in AddressListNew">
+                                                    <td>{{e.Address}}</td>
+                                                    <td>{{e.Latlong}}</td>
                                                     <td>{{e.StateName}}</td>
                                                     <td>{{e.CityName}}</td>
-                                                    <td>{{e.Address}}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -130,110 +144,116 @@
                             <div class="row">
                                 <div class="col-12">
                                     <form ng-submit="SaveExhibitor()">
-                                        <h4 class="form-header text-uppercase">Exhibitor</h4>
                                         <div class="row">
-
                                             <div class="form-group col-sm-4 col-lg-4">
                                                 <label>PersonName</label>
-                                                <input type="text" class="form-control" required="" autocomplete="off" ng-model="PersonName">
+                                                <input type="text" class="form-control form-control-sm" required="" autocomplete="off" ng-model="PersonName">
 
                                             </div>
                                             <div class="form-group col-sm-4 col-lg-4">
                                                 <label>Designation</label>
-                                                <input type="text" class="form-control" autocomplete="off" ng-model="Designation">
+                                                <input type="text" class="form-control form-control-sm" autocomplete="off" ng-model="Designation">
 
                                             </div>
                                             <div class="form-group col-sm-4 col-lg-4">
                                                 <label>Company Name</label>
-                                                <input type="text" class="form-control" required="" autocomplete="off" ng-model="CompanyName">
+                                                <input type="text" class="form-control form-control-sm" required="" autocomplete="off" ng-model="CompanyName">
 
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="form-group col-sm-4 col-lg-4">
                                                 <label>MobileNo</label>
-                                                <input type="text" class="form-control" required="" maxlength="10" autocomplete="off" ng-model="MobileNo">
+                                                <input type="text" class="form-control form-control-sm" required="" maxlength="10" autocomplete="off" ng-model="MobileNo">
 
                                             </div>
                                             <div class="form-group col-sm-4 col-lg-4">
                                                 <label>TelephoneNo</label>
-                                                <input type="text" class="form-control" autocomplete="off" ng-model="TelephoneNo">
+                                                <input type="text" class="form-control form-control-sm" autocomplete="off" ng-model="TelephoneNo">
 
                                             </div>
                                             <div class="form-group col-sm-4 col-lg-4">
                                                 <label>Email</label>
-                                                <input type="text" class="form-control" required="" autocomplete="off" ng-model="Email">
+                                                <input type="text" class="form-control form-control-sm" required="" autocomplete="off" ng-model="Email">
 
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="form-group col-sm-4 col-lg-4">
-                                                <label>First Address</label>
-                                                <textarea rows="2" cols="20" name="basic" ng-model="Address" class="form-control"></textarea>
-                                            </div>
-                                            <div class="form-group col-sm-4 col-lg-4">
-                                                <label>Second Address</label>
-                                                <textarea rows="2" cols="20" name="basic" ng-model="Address1" class="form-control"></textarea>
-                                            </div>
-                                            <div class="form-group col-sm-4 col-lg-4">
-                                                <label>Third Address</label>
-                                                <textarea rows="2" cols="20" name="basic" ng-model="Address2" class="form-control"></textarea>
-                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="jumbotron" style="padding:2px;background:#fdfdfd;">
+                                                    <div class="row">
+                                                        <div class="form-group col-md-3">
+                                                            <label>Address</label>
+                                                            <input type="text" class="form-control form-control-sm" ng-model="addressmodel"/>
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label>Latitude Logitude</label>
+                                                            <input type="text" class="form-control form-control-sm" ng-model="latlongmodel"/>
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label>State</label>
+                                                            <select class="form-control form-control-sm" ng-model="stateselectbox" ng-change="GetCities()" >
+                                                                <option value="" selected>~Select~</option>
+                                                                <option ng-repeat="sel in StateList" ng-selected="stateselectbox == sel.Id" value="{{sel.Id}}">{{sel.Title}}</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label>City</label>
+                                                            <select class="form-control form-control-sm" ng-model="cityselectbox" >
+                                                                <option value="" selected>~Select~</option>
+                                                                <option ng-repeat="sel in CitiesList" ng-selected="cityselectbox == sel.Id" value="{{sel.Id}}">{{sel.Title}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group" align="right">
+                                                        <input type="button" ng-click="AddAddress()" value="Add" class="btn btn-sm btn-primary"/>
+                                                    </div>
 
-                                        </div>
-                                        <div class="row">
-                                            <div class="form-group col-sm-4 col-lg-4">
-                                                <label>Lat-Long of First Address</label>
-                                                <input type="text" class="form-control" required="" autocomplete="off" ng-model="LatLong">
-                                            </div>
-                                            <div class="form-group col-sm-4 col-lg-4">
-                                                <label>Second Address</label>
-                                                <input type="text" class="form-control" autocomplete="off" ng-model="LatLong2">
-                                            </div>
-                                            <div class="form-group col-sm-4 col-lg-4">
-                                                <label>Third Address</label>
-                                                <input type="text" class="form-control" autocomplete="off" ng-model="LatLong3">
-                                            </div>
+                                                    <div class="table-responsive">
+                                                        <table class="table table-bordered">
+                                                            <thead class="bg-dribbble" style="color:white;">
+                                                                <tr>
+                                                                    <th>Address</th>
+                                                                    <th>Lat-Long</th>
+                                                                    <th>State</th>
+                                                                    <th>City</th>
+                                                                    <th></th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr ng-repeat="ad in addressList">
+                                                                    <td>{{ad.Address}}</td>
+                                                                    <td>{{ad.Latlong}}</td>
+                                                                    <td>{{ad.StateName}}</td>
+                                                                    <td>{{ad.CityName}}</td>
+                                                                    <td>
+                                                                        <button class="btn btn-danger btn-sm" ng-click="deleteAddressRow($index)">
+                                                                            <i class="fa fa-trash"></i>
+                                                                        </button>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
 
-                                        </div>
-                                        <div class="row">
-
-                                            <div class="form-group col-sm-4 col-lg-4">
-                                                <label>Country</label>
-                                                <input type="text" class="form-control" required="" autocomplete="off" ng-model="Country">
-                                            </div>
-                                            <div class="form-group col-sm-4 col-lg-4">
-                                                <label>State</label>
-                                                <div>
-                                                    <select class="form-control" ng-model="stateselectbox" ng-change="GetCities()" required>
-                                                        <option value="" selected>~Select~</option>
-                                                        <option ng-repeat="sel in StateList" ng-selected="stateselectbox == sel.Id" value="{{sel.Id}}">{{sel.Title}}</option>
-                                                    </select>
+                                                    <br />
+                                                    <div class="row">
+                                                        <div class="form-group col-md-4">
+                                                            <label>Country</label>
+                                                            <input type="text" class="form-control form-control-sm" required="" autocomplete="off" ng-model="Country">
+                                                        </div>
+                                                        <div class="form-group col-md-4">
+                                                            <label>Exhibitor Profile Image</label>
+                                                            <file name="image" ng-model="myFile" accept="image/png,image/jpg,image/jpeg" />
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="form-group col-sm-4 col-lg-4">
-                                                <label>City</label>
-                                                <div>
-                                                    <select class="form-control" ng-model="cityselectbox" required>
-                                                        <option value="" selected>~Select~</option>
-                                                        <option ng-repeat="sel in CitiesList" ng-selected="cityselectbox == sel.Id" value="{{sel.Id}}">{{sel.Title}}</option>
-                                                    </select>
-                                                </div>
-                                            </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="form-group col-sm-4 col-lg-4">
-                                                <label>Image</label>
-                                                <file name="image" ng-model="myFile" accept="image/png,image/jpg,image/jpeg" />
-                                            </div>
-
-                                        </div>
-
-
-
+                                        
                                         <div class="modal-footer">
-                                            <button type="submit" class="btn btn-primary"><i class="fa fa-check-square-o"></i>Submit</button>
-                                            <button type="button" class="btn btn-dark" data-dismiss="modal" ng-click="Clearall()"><i class="fa fa-times"></i> Close</button>
+                                            <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-check-square-o"></i> Submit</button>
+                                            <button type="button" class="btn btn-dark btn-sm" data-dismiss="modal" ng-click="Clearall()"><i class="fa fa-times"></i> Close</button>
                                         </div>
                                     </form>
                                 </div>

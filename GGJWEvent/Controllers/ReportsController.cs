@@ -20,48 +20,125 @@ namespace GGJWEvent.Controllers
         {
             try
             {
-                string Filename = "ExhibitorList";
-                List<GetExhibitorData_Result> exhibitorList = new List<GetExhibitorData_Result>();
-                exhibitorList = db.GetExhibitorData().ToList();
+                var Filename = "ExhibitorReports";
 
                 ExcelPackage pck = new ExcelPackage();
                 ExcelWorksheet ws = pck.Workbook.Worksheets.Add("ExhibitorList");
 
-                ws.Cells["A1"].Value = "Id";
+                ws.Cells["A1"].Value = "Srno";
                 ws.Cells["B1"].Value = "PersonName";
                 ws.Cells["C1"].Value = "Designation";
                 ws.Cells["D1"].Value = "CompanyName";
-                ws.Cells["E1"].Value = "Address";
-                ws.Cells["F1"].Value = "Address1";
-                ws.Cells["G1"].Value = "Address2";
-                ws.Cells["H1"].Value = "Country";
-                ws.Cells["I1"].Value = "TelephoneNo";
-                ws.Cells["J1"].Value = "MobileNo";
-                ws.Cells["K1"].Value = "Email";
-                ws.Cells["L1"].Value = "GoogleLocation";
-                ws.Cells["M1"].Value = "IsVerified";
-                ws.Cells["N1"].Value = "StateName";
-                ws.Cells["O1"].Value = "CityName";
+                ws.Cells["E1"].Value = "Country";
+                ws.Cells["F1"].Value = "TelephoneNo";
+                ws.Cells["G1"].Value = "MobileNo";
+                ws.Cells["H1"].Value = "Email";
+                ws.Cells["I1"].Value = "IsVerified";
+
+                ws.Cells["A1"].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                ws.Cells["A1"].Style.Fill.BackgroundColor.SetColor(Color.ForestGreen);
+                ws.Cells["A1"].Style.Font.Color.SetColor(Color.White);
+
+                ws.Cells["B1"].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                ws.Cells["B1"].Style.Fill.BackgroundColor.SetColor(Color.ForestGreen);
+                ws.Cells["B1"].Style.Font.Color.SetColor(Color.White);
+
+                ws.Cells["C1"].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                ws.Cells["C1"].Style.Fill.BackgroundColor.SetColor(Color.ForestGreen);
+                ws.Cells["C1"].Style.Font.Color.SetColor(Color.White);
+
+                ws.Cells["D1"].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                ws.Cells["D1"].Style.Fill.BackgroundColor.SetColor(Color.ForestGreen);
+                ws.Cells["D1"].Style.Font.Color.SetColor(Color.White);
+
+                ws.Cells["E1"].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                ws.Cells["E1"].Style.Fill.BackgroundColor.SetColor(Color.ForestGreen);
+                ws.Cells["E1"].Style.Font.Color.SetColor(Color.White);
+
+                ws.Cells["F1"].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                ws.Cells["F1"].Style.Fill.BackgroundColor.SetColor(Color.ForestGreen);
+                ws.Cells["F1"].Style.Font.Color.SetColor(Color.White);
+
+                ws.Cells["G1"].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                ws.Cells["G1"].Style.Fill.BackgroundColor.SetColor(Color.ForestGreen);
+                ws.Cells["G1"].Style.Font.Color.SetColor(Color.White);
+
+                ws.Cells["H1"].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                ws.Cells["H1"].Style.Fill.BackgroundColor.SetColor(Color.ForestGreen);
+                ws.Cells["H1"].Style.Font.Color.SetColor(Color.White);
+
+                ws.Cells["I1"].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                ws.Cells["I1"].Style.Fill.BackgroundColor.SetColor(Color.ForestGreen);
+                ws.Cells["I1"].Style.Font.Color.SetColor(Color.White);
 
                 int rowStartFrom = 2;
-                foreach (var item in exhibitorList)
+                int ab = 1;
+                List<GetExhibitorDatalists> exhibitorList = new List<GetExhibitorDatalists>();
+                string a = string.Format("SELECT * FROM Exhibitor");
+                DataTable der = sf.GetData(a);
+                foreach (DataRow item in der.Rows)
                 {
-                    ws.Cells[string.Format("A{0}", rowStartFrom)].Value = item.Id;
-                    ws.Cells[string.Format("B{0}", rowStartFrom)].Value = item.PersonName;
-                    ws.Cells[string.Format("C{0}", rowStartFrom)].Value = item.Designation;
-                    ws.Cells[string.Format("D{0}", rowStartFrom)].Value = item.CompanyName;
-                    ws.Cells[string.Format("E{0}", rowStartFrom)].Value = item.Address;
-                    ws.Cells[string.Format("F{0}", rowStartFrom)].Value = item.Address1==""? "Not Available" : item.Address1;
-                    ws.Cells[string.Format("G{0}", rowStartFrom)].Value = item.Address2 == "" ? "Not Available" : item.Address1;
-                    ws.Cells[string.Format("H{0}", rowStartFrom)].Value = item.Country;
-                    ws.Cells[string.Format("I{0}", rowStartFrom)].Value = item.TelephoneNo;
-                    ws.Cells[string.Format("J{0}", rowStartFrom)].Value = item.MobileNo;
-                    ws.Cells[string.Format("K{0}", rowStartFrom)].Value = item.Email;
-                    ws.Cells[string.Format("L{0}", rowStartFrom)].Value = item.GoogleLocation == "undefined" ? "Not Available" : item.Address1;
-                    ws.Cells[string.Format("M{0}", rowStartFrom)].Value = item.IsVerified;
-                    ws.Cells[string.Format("N{0}", rowStartFrom)].Value = item.StateName;
-                    ws.Cells[string.Format("O{0}", rowStartFrom)].Value = item.CityName;
+
+                    
+
+                    ws.Cells[string.Format("A{0}",rowStartFrom)].Value = ab;
+                    ws.Cells[string.Format("B{0}", rowStartFrom)].Value = Convert.ToString(item["PersonName"]);
+                    ws.Cells[string.Format("C{0}", rowStartFrom)].Value = Convert.ToString(item["Designation"]);
+                    ws.Cells[string.Format("D{0}", rowStartFrom)].Value = Convert.ToString(item["CompanyName"]);
+                    ws.Cells[string.Format("E{0}", rowStartFrom)].Value = Convert.ToString(item["Country"]);
+                    ws.Cells[string.Format("F{0}", rowStartFrom)].Value = Convert.ToString(item["TelephoneNo"]);
+                    ws.Cells[string.Format("G{0}", rowStartFrom)].Value = Convert.ToString(item["MobileNo"]);
+                    ws.Cells[string.Format("H{0}", rowStartFrom)].Value = Convert.ToString(item["Email"]);
+                    ws.Cells[string.Format("I{0}", rowStartFrom)].Value = item["IsVerified"] == DBNull.Value ? false : Convert.ToBoolean(item["IsVerified"]);
                     rowStartFrom++;
+                    ab++;
+
+                    ws.Cells[string.Format("B{0}", rowStartFrom)].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                    ws.Cells[string.Format("B{0}", rowStartFrom)].Style.Fill.BackgroundColor.SetColor(Color.DarkGray);
+                    ws.Cells[string.Format("B{0}", rowStartFrom)].Style.Font.Color.SetColor(Color.White);
+
+                    ws.Cells[string.Format("C{0}", rowStartFrom)].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                    ws.Cells[string.Format("C{0}", rowStartFrom)].Style.Fill.BackgroundColor.SetColor(Color.DarkGray);
+                    ws.Cells[string.Format("C{0}", rowStartFrom)].Style.Font.Color.SetColor(Color.White);
+
+                    ws.Cells[string.Format("D{0}", rowStartFrom)].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                    ws.Cells[string.Format("D{0}", rowStartFrom)].Style.Fill.BackgroundColor.SetColor(Color.DarkGray);
+                    ws.Cells[string.Format("D{0}", rowStartFrom)].Style.Font.Color.SetColor(Color.White);
+
+                    ws.Cells[string.Format("E{0}", rowStartFrom)].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                    ws.Cells[string.Format("E{0}", rowStartFrom)].Style.Fill.BackgroundColor.SetColor(Color.DarkGray);
+                    ws.Cells[string.Format("E{0}", rowStartFrom)].Style.Font.Color.SetColor(Color.White);
+
+                    ws.Cells[string.Format("F{0}", rowStartFrom)].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                    ws.Cells[string.Format("F{0}", rowStartFrom)].Style.Fill.BackgroundColor.SetColor(Color.DarkGray);
+                    ws.Cells[string.Format("F{0}", rowStartFrom)].Style.Font.Color.SetColor(Color.White);
+                    
+                    ws.Cells[string.Format("B{0}", rowStartFrom)].Value = "Srno";
+                    ws.Cells[string.Format("C{0}", rowStartFrom)].Value = "Address";
+                    ws.Cells[string.Format("D{0}", rowStartFrom)].Value = "Latlong";
+                    ws.Cells[string.Format("E{0}", rowStartFrom)].Value = "State";
+                    ws.Cells[string.Format("F{0}", rowStartFrom)].Value = "City";
+                    rowStartFrom++;
+                    int ba = 1;
+
+                    string b = string.Format("SELECT * FROM ExhibitorAddress WHERE ExhibitorId='{0}'", Convert.ToInt32(item["Id"]));
+                    DataTable dte = sf.GetData(b);
+                    foreach (DataRow items in dte.Rows)
+                    {
+                        ws.Cells[string.Format("B{0}", rowStartFrom)].Value = ba;
+                        ws.Cells[string.Format("C{0}", rowStartFrom)].Value = Convert.ToString(items["Address"]);
+                        ws.Cells[string.Format("D{0}", rowStartFrom)].Value = Convert.ToString(items["Latlong"]);
+                        ba++;
+                        
+                        var i = Convert.ToInt64(items["StateId"]);
+                        DataTable StateNa = sf.GetData(string.Format("SELECT * FROM State WHERE Id='{0}'", i));
+                        ws.Cells[string.Format("E{0}", rowStartFrom)].Value = StateNa.Rows[0]["Title"].ToString();
+
+                        var j = Convert.ToInt64(items["CityId"]);
+                        DataTable CityNa = sf.GetData(string.Format("SELECT * FROM City WHERE Id='{0}'", j));
+                        ws.Cells[string.Format("F{0}", rowStartFrom)].Value = CityNa.Rows[0]["Title"].ToString();
+                        rowStartFrom++; 
+                    }
                 }
                 ws.Cells["A:AZ"].AutoFitColumns();
                 Response.Clear();

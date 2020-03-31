@@ -43,6 +43,8 @@ namespace GGJWEvent.Models
         public virtual DbSet<MegaDraw> MegaDraws { get; set; }
         public virtual DbSet<MegaDrawWinner> MegaDrawWinners { get; set; }
         public virtual DbSet<Notification> Notifications { get; set; }
+        public virtual DbSet<BannerMaster> BannerMasters { get; set; }
+        public virtual DbSet<ExhibitorAddress> ExhibitorAddresses { get; set; }
         public virtual DbSet<Exhibitor> Exhibitors { get; set; }
     
         public virtual int UpdateExhibitorVerficationStatus(Nullable<int> status, Nullable<long> exhibitorId)
@@ -354,14 +356,14 @@ namespace GGJWEvent.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetExhibitorLoginData_Result>("GetExhibitorLoginData", mobileParameter);
         }
     
-        public virtual ObjectResult<GetExhibitorData_Result> GetExhibitorData()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetExhibitorData_Result>("GetExhibitorData");
-        }
-    
         public virtual ObjectResult<GetTotalCoupon_Result> GetTotalCoupon()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetTotalCoupon_Result>("GetTotalCoupon");
+        }
+    
+        public virtual int GetExhibitorData()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GetExhibitorData");
         }
     }
 }

@@ -21,7 +21,9 @@
         <EntityTypeShape EntityType="GGJWEventModel.MegaDraw" Width="1.5" PointX="9.375" PointY="7.75" />
         <EntityTypeShape EntityType="GGJWEventModel.MegaDrawWinner" Width="1.5" PointX="9.375" PointY="10.75" />
         <EntityTypeShape EntityType="GGJWEventModel.Notification" Width="1.5" PointX="11.375" PointY="0.75" />
-        <EntityTypeShape EntityType="GGJWEventModel.Exhibitor" Width="1.5" PointX="11.375" PointY="3.75" />
+        <EntityTypeShape EntityType="GGJWEventModel.BannerMaster" Width="1.5" PointX="11.375" PointY="3.75" />
+        <EntityTypeShape EntityType="GGJWEventModel.ExhibitorAddress" Width="1.5" PointX="11.375" PointY="10.75" />
+        <EntityTypeShape EntityType="GGJWEventModel.Exhibitor" Width="1.5" PointX="3.375" PointY="12.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

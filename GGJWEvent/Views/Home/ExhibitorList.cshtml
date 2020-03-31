@@ -9,10 +9,10 @@
 <div class="container-fluid">
     <!-- Breadcrumb-->
     <div class="row pt-2 pb-2">
-        <div class="col-sm-9">
+        <div class="col-sm-12">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="javaScript:void();">Exhibitors</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Exhibitor Report</li>
+                <li class="breadcrumb-item"><a href="javaScript:void();"> Exhibitors</a></li>
+                <li class="breadcrumb-item active" aria-current="page"> Reports</li>
             </ol>
         </div>
     </div>
@@ -25,37 +25,33 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group" style="font-size:20px;">Exhibitor Report</div>
+                                    <div class="col-md-9">
+                                        <h6 class="card-title">DATA</h6>
                                     </div>
-                                    <div class="col-md-4" style="padding-bottom:15px;">
-                                        <input type="text" id="" class="form-control form-control-sm" placeholder="Search Here" ng-model="searchText" />
-                                    </div>
-                                    <div class="col-md-4" align="right">
-                                        <a href="~/Reports/ExhibitorListReport" class="btn btn-info btn-sm">Export To Excel</a>
+                                    <div class="col-md-3" align="right">
+                                        <a href="/Reports/ExhibitorListReport" class="btn btn-dark btn-sm">Export To Excel</a>
+                                        <br /><br />
                                     </div>
                                 </div>
-                                <div class="table-responsive" id="export">
-                                    <table class="table table-hover table-striped table-bordered">
+                                <div class="table-responsive">
+                                    <table datatable="ng" dt-options="vm.dtOptions" class="table table-hover table-striped table-bordered">
                                         <thead>
                                             <tr>
-                                                <th>SNO</th>
-                                                <th>PersonName</th>
-                                                <th>CompanyName</th>
+                                                <th>NO</th>
+                                                <th>Name</th>
+                                                <th>Company Name</th>
                                                 <th>MobileNo</th>
-                                                <th>Email</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr ng-repeat="data in ExhibitorList | filter:searchText">
+                                            <tr ng-repeat="data in ExhibitorList">
                                                 <td>{{$index+1}}</td>
                                                 <td>{{data.PersonName}}</td>
                                                 <td>{{data.CompanyName}}</td>
                                                 <td>{{data.MobileNo}}</td>
-                                                <td>{{data.Email}}</td>
                                                 <td>
-                                                    <button type="button" ng-click="ExhibitorDetails(data)" class="btn btn-info btn-sm " data-toggle="modal" data-target="#modal"><i class="fa fa-list-ol"></i></button>
+                                                    <button type="button" class="btn btn-info btn-block btn-sm " ng-click="ExhibitorDetails(data)" data-toggle="modal" data-target="#modal"><i class="fa fa-eye"></i></button>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -69,44 +65,55 @@
         </div>
         <div class="col-lg-4">
             <div class="modal fade" id="modal">
-                <div class="modal-dialog modal-xl">
+                <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">ExhibitorList</h5>
+                            <h5 class="modal-title">More Details</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
                             <div class="row">
-                                <div class="col-12">
-                                    <div class="row">
-                                        <div class="col-md-8">
-                                            <h4 class="card-title" style="font-size:20px;">DATA</h4>
-                                        </div>
-                                    </div>
+                                <div class="col-md-12">
                                     <div class="table-responsive ">
                                         <table class="table table-hover table-striped table-bordered">
                                             <thead>
                                                 <tr>
                                                     <th>Image</th>
+                                                    <th>Email</th>
                                                     <th>Designation</th>
                                                     <th>TelephoneNo</th>
                                                     <th>Country</th>
-                                                    <th>State</th>
-                                                    <th>City</th>
-                                                    <th>Address</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr ng-repeat="e in ExhibitorDetailsList">
                                                     <td><img src="{{e.Image}}" width="100px" /></td>
+                                                    <td>{{e.Email}}</td>
                                                     <td>{{e.Designation}}</td>
                                                     <td>{{e.TelephoneNo}}</td>
                                                     <td>{{e.Country}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="table-responsive ">
+                                        <table class="table table-hover table-striped table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>Address</th>
+                                                    <th>Lat-Long</th>
+                                                    <th>State</th>
+                                                    <th>City</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="e in AddressListNew">
+                                                    <td>{{e.Address}}</td>
+                                                    <td>{{e.Latlong}}</td>
                                                     <td>{{e.StateName}}</td>
                                                     <td>{{e.CityName}}</td>
-                                                    <td>{{e.Address}}</td>
                                                 </tr>
                                             </tbody>
                                         </table>

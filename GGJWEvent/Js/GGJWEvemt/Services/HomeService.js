@@ -149,22 +149,13 @@
         ProdImgData.append('PersonName', scope.PersonName);
         ProdImgData.append('Designation', scope.Designation);
         ProdImgData.append('CompanyName', scope.CompanyName);
-        ProdImgData.append('Address', scope.Address);
-        ProdImgData.append('Address1', scope.Address1);
-        ProdImgData.append('Address2', scope.Address2);
         ProdImgData.append('Country', scope.Country);
         ProdImgData.append('TelephoneNo', scope.TelephoneNo);
         ProdImgData.append('Email', scope.Email);
-        ProdImgData.append('StateId', scope.SelectedState);
-        ProdImgData.append('CityId', scope.Selectedcity);
-        ProdImgData.append('GoogleLocation', scope.GoogleLocation);
-        ProdImgData.append('LatLong', scope.LatLong);
-        ProdImgData.append('LatLong2', scope.LatLong2);
-        ProdImgData.append('LatLong3', scope.LatLong3);
         ProdImgData.append('MobileNo', scope.MobileNo);
-
+        ProdImgData.append('Addresses',JSON.stringify(scope.addressList));
         var xhr = new XMLHttpRequest;
-        xhr.open('POST', API_URL + '/HomeAPI/SaveExhibitor', true);
+        xhr.open('POST', API_URL + '/HomeAPI/SaveExhibitorV1', true);
         xhr.onload = function handler() {
             if (this.status === 200) {
                 var data = JSON.parse(this.responseText);

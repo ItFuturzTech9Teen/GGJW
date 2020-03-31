@@ -12,19 +12,13 @@ namespace GGJWEvent.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Exhibitor
+    public partial class ExhibitorAddress
     {
         public long Id { get; set; }
-        public string PersonName { get; set; }
-        public string Designation { get; set; }
-        public string CompanyName { get; set; }
-        public string Country { get; set; }
-        public string TelephoneNo { get; set; }
-        public string MobileNo { get; set; }
-        public string Email { get; set; }
-        public string FCMToken { get; set; }
-        public Nullable<bool> IsVerified { get; set; }
-        public string Image { get; set; }
-        public string GoogleLocation { get; set; }
+        public string Address { get; set; }
+        public string Latlong { get; set; }
+        public Nullable<long> StateId { get; set; }
+        public Nullable<long> CityId { get; set; }
+        public Nullable<long> ExhibitorId { get; set; }
     }
 }
