@@ -1860,10 +1860,14 @@ namespace GGJWEvent.Controllers
                                     dataBag.DrawId = DrawId;
                                     dataBag.Image = CustomerDt.Rows[0]["Image"].ToString();
 
-                                    string Title = "Congratulation, " + CustomerDt.Rows[0]["PersonName"].ToString() + "";
-                                    string message = "Congratulation, " + CustomerDt.Rows[0]["PersonName"].ToString() + ", You've Won the '" + GetDraw.Rows[0]["Prize"] + "' in the Following " + GetDraw.Rows[0]["DrawName"] + "";
+                                    string Title = "Congratulation, " + dataBag.PersonName + "";
+                                    string message = "You've Won the '" + GetDraw.Rows[0]["Prize"] + "' in the Following " + GetDraw.Rows[0]["DrawName"] + "";
                                     GetCustomerFCMToken_Result data = new Models.GetCustomerFCMToken_Result();
                                     SendPushNotificationWthData(CustomerDt.Rows[0]["FCMToken"].ToString(), Title, message, data);
+                                    string qry = string.Format("insert into Notification(Title,Message,Date,ExhibitorId,CustomerId) values('" + Title + "','" + message + "','" + DateTime.Now + "','0','" + dataBag.CustomerId + "')");
+                                    sf.ExecuteQuery(qry);
+                                    SendSMS sms = new SendSMS();
+                                    sms.sendotp(message, CustomerDt.Rows[0]["MobileNo"].ToString());
                                     resultData.Message = "Successfully !";
                                     resultData.IsSuccess = true;
                                     resultData.Data = dataBag;
@@ -2510,10 +2514,15 @@ namespace GGJWEvent.Controllers
                                     dataBag.DrawId = MegaDrawId;
                                     dataBag.Image = CustomerDt.Rows[0]["Image"].ToString();
 
-                                    string Title = "Congratulation, " + CustomerDt.Rows[0]["PersonName"].ToString() + "";
-                                    string message = "Congratulation, " + CustomerDt.Rows[0]["PersonName"].ToString() + ", You've Won the " + GetDraw.Rows[0]["Prize"] + " in the Following " + GetDraw.Rows[0]["DrawName"] + " ";
+                                    string Title = "Congratulation, " + dataBag.PersonName + "";
+                                    string message = "You've Won the " + GetDraw.Rows[0]["Prize"] + " in the Following " + GetDraw.Rows[0]["DrawName"] + " ";
                                     GetCustomerFCMTokenMega_Result data = new GetCustomerFCMTokenMega_Result();
+
                                     SendPushNotificationWthdata(CustomerDt.Rows[0]["FCMToken"].ToString(), Title, message, data);
+                                    string qry = string.Format("insert into Notification(Title,Message,Date,ExhibitorId,CustomerId) values('" + Title + "','" + message + "','" + DateTime.Now + "','0','" + dataBag.CustomerId + "')");
+                                    sf.ExecuteQuery(qry);
+                                    SendSMS sms = new SendSMS();
+                                    sms.sendotp(message, CustomerDt.Rows[0]["MobileNo"].ToString());
                                     resultData.Message = "Successfully !";
                                     resultData.IsSuccess = true;
                                     resultData.Data = dataBag;
