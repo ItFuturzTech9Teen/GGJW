@@ -1349,16 +1349,18 @@ namespace GGJWEvent.Controllers
                                         }
                                     }
                                     GetCusmoterMobile_Result mobile = new GetCusmoterMobile_Result();
-                                    mobile = db.GetCusmoterMobile(list.CustomerId).FirstOrDefault();
-
-                                    string title = "Coupon Assigned";
-                                    string message = "" + mobile.CompanyName.ToUpper() + " has assigned you " + data.Qty + " Coupons !";
-
-                                    SendPushNotification(mobile.FCMToken, message, title);
-
-                                    //SendSMS sms = new SendSMS();
-                                    //string res = sms.sendotp(""+mobile.CompanyName.ToUpper()+" has assigned you "+data.Qty+" Coupons !", mobile.CustomerMobile);
-
+                                    mobile = db.GetCusmoterMobile(data.CustomerId).Where(a => a.ExhibitorId == applycoupon.ExhibitorId).FirstOrDefault();
+                                    if (mobile != null)
+                                    {
+                                        
+                                        string title = "Coupon Assigned";
+                                        string message = "" + mobile.CompanyName.ToUpper() + " Has Assigned You " + data.Qty + " Coupons !";
+                                        SendPushNotification(mobile.FCMToken, message, title);
+                                        string qry = string.Format("insert into Notification(Title,Message,Date,ExhibitorId,CustomerId) values('" + title + "','" + message + "','" + DateTime.Now + "',0,'" + data.CustomerId + "')");
+                                        sf.ExecuteQuery(qry);
+                                        SendSMS sms = new SendSMS();
+                                        string res = sms.sendotp("" + mobile.CompanyName.ToUpper() + " Has Assigned You " + data.Qty + " Coupons!", mobile.MobileNo);
+                                    }
                                 }
                             }
                             else
@@ -1409,16 +1411,16 @@ namespace GGJWEvent.Controllers
 
                                 }
                                 GetCusmoterMobile_Result mobile = new GetCusmoterMobile_Result();
-                                mobile = db.GetCusmoterMobile(data.CustomerId).FirstOrDefault();
-                                if(mobile != null)
+                                mobile = db.GetCusmoterMobile(list.CustomerId).Where(a => a.ExhibitorId == data.ExhibitorId).FirstOrDefault();
+                                if (mobile != null)
                                 {
                                     string title = "Coupon Assigned";
-                                    string message = "" + mobile.CompanyName.ToUpper() + " has assigned you " + data.Qty + " Coupons !";
-
+                                    string message = "" + mobile.CompanyName.ToUpper() + " Has Assigned You " + data.Qty + " Coupons !";
                                     SendPushNotification(mobile.FCMToken, message, title);
-
-                                    //SendSMS sms = new SendSMS();
-                                    //string res = sms.sendotp("" + mobile.CompanyName.ToUpper() + " has assigned you " + data.Qty + " Coupons Successfully !", mobile.MobileNo);
+                                    string qry = string.Format("insert into Notification(Title,Message,Date,ExhibitorId,CustomerId) values('" + title + "','" + message + "','" + DateTime.Now + "',0,'" + data.CustomerId + "')");
+                                    sf.ExecuteQuery(qry);
+                                    SendSMS sms = new SendSMS();
+                                    string res = sms.sendotp("" + mobile.CompanyName.ToUpper() + " Has Assigned You " + data.Qty + " Coupons!", mobile.MobileNo);
                                 }
 
                             }
@@ -1781,11 +1783,15 @@ namespace GGJWEvent.Controllers
                         }
 
                         GetCusmoterMobile_Result mobiledata = new GetCusmoterMobile_Result();
-                        mobiledata = db.GetCusmoterMobile(applyCoupon.CustomerId).FirstOrDefault();
-                        if(mobiledata != null)
+                        mobiledata = db.GetCusmoterMobile(applyCoupon.CustomerId).Where(a =>a.ExhibitorId== applyCoupon.ExhibitorId).FirstOrDefault();
+                        if (mobiledata != null)
                         {
+                            string message = "" + mobiledata.CompanyName + " Cancel your Coupon No:" + customerCoupon.CouponNo + "";
+                            SendPushNotification(mobiledata.FCMToken, message, "Coupon Cancelled");
+                            string qry = string.Format("insert into Notification(Title,Message,Date,ExhibitorId,CustomerId) values('Coupon Cancelled','" + message + "','" + DateTime.Now + "',0,'" + applyCoupon.CustomerId + "')");
+                            sf.ExecuteQuery(qry);
                             SendSMS sms = new SendSMS();
-                            string res = sms.sendotp(""+mobiledata.CompanyName+" cancel your one coupon", mobiledata.CustomerMobile);
+                            string res = sms.sendotp(""+mobiledata.CompanyName+" Cancel your Coupon No:"+ customerCoupon.CouponNo + "", mobiledata.CustomerMobile);
                         }
                        
                     }
@@ -1817,7 +1823,7 @@ namespace GGJWEvent.Controllers
                 {
 
                     List<Notification> notificationList = new List<Notification>();
-                    notificationList = db.Notifications.Where(n => n.ExhibitorId == id).ToList();
+                    notificationList = db.Notifications.Where(n => n.ExhibitorId == id).OrderByDescending(a =>a.Id).ToList();
                     if (notificationList != null)
                     {
 
@@ -1837,7 +1843,7 @@ namespace GGJWEvent.Controllers
                 else if(type == "Visitor")
                 {
                     List<Notification> notificationList = new List<Notification>();
-                    notificationList = db.Notifications.Where(n => n.CustomerId == id).ToList();
+                    notificationList = db.Notifications.Where(n => n.CustomerId == id).OrderByDescending(a => a.Id).ToList();
                     if (notificationList != null)
                     {
 

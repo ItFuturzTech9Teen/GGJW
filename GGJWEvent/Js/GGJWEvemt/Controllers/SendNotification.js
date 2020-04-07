@@ -31,14 +31,17 @@
                 $scope.PersonName = $scope.DataList[i].Name;
 
                 var Id = $scope.Id;
-                var x = angular.element(document.getElementById("Title"));
-                var b = angular.element(document.getElementById("Message"));
-                message += "" + $scope.Type + " " + Id + ", " + x.val() + ", " + b.val() + "\n";
-                datanotification.push({ "type": $scope.Type, "Id": Id, "title": x.val(), "message": b.val() });
+                var x = $scope.Title;
+                var b = $scope.Message;
+                message += "" + $scope.Type + " " + Id + ", " + x + ", " + b + "\n";
+                datanotification.push({ "type": $scope.Type, "Id": Id, "title": x, "message": b });
               
             }
         }
         HomeService.SendNotification(datanotification);
+        $scope.Type = "";
+        $scope.Title = "";
+        $scope.Message = "";
         //console.log(datanotification)
     }
 

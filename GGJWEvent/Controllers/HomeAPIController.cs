@@ -576,10 +576,21 @@ namespace GGJWEvent.Controllers
                         exhibitorCouponQty.Qty = Convert.ToInt32(updateqty);
                         db.SaveChanges();
                     }
+
+                    string ass = string.Format("SELECT * FROM Exhibitor WHERE Id='{0}'", request.ExhibitorId);
+                    DataTable dre = sf.GetData(ass);
+                    if(dre.Rows.Count == 1)
+                    {
+                        DataRow dr = dre.Rows[0];
+                        string title = "Coupon Assigned By Admin";
+                        string message = "Admin Has Assigned You " + request.Qty + " Coupons As Per Request !";
+                        SendPushNotification(dr["FCMToken"].ToString(), message, title);
+                        string qry = string.Format("insert into Notification(Title,Message,Date,ExhibitorId,CustomerId) values('" + title + "','" + message + "','" + DateTime.Now + "','" + request.ExhibitorId + "',0)");
+                        sf.ExecuteQuery(qry);
+                    }
                 }
-
-
-
+                
+                
                 resultData.Message = "Coupon Assigned Successfully";
                 resultData.IsSuccess = true;
                 resultData.Data = 1;
@@ -719,11 +730,10 @@ namespace GGJWEvent.Controllers
                     {
                         string title = "Coupon Assigned";
                         string message = "You Have Assigned " + assigncouponexhibitor.Qty + " Coupon !";
-
                         SendPushNotification(mobiledata.FCMToken, message, title);
 
-                        //SendSMS sms = new SendSMS();
-                        //string res = sms.sendotp("" + assigncouponexhibitor.Qty + " you Have Assigned Coupon", mobiledata.ExhibitorMobile);
+                        SendSMS sms = new SendSMS();
+                        string res = sms.sendotp("" + assigncouponexhibitor.Qty + " you Have Assigned Coupon", mobiledata.ExhibitorMobile);
                     }
 
                 }
@@ -846,9 +856,7 @@ namespace GGJWEvent.Controllers
             }
         }
 
-
         #endregion
-
         #region ExhibitorList
         [HttpGet]
         public ResultData GetExhibitorList()
@@ -1549,6 +1557,8 @@ namespace GGJWEvent.Controllers
                             SendPushNotification(exhibitor.FCMToken, data.message, data.title);
                             string qry = string.Format("insert into Notification(Title,Message,Date,ExhibitorId,CustomerId) values('" + data.title + "','" + data.message + "','" + DateTime.Now + "','" + data.id + "',0)");
                             sf.ExecuteQuery(qry);
+                            SendSMS sms = new SendSMS();
+                            string res = sms.sendotp("" + data.title + ", "+ data.message + "", exhibitor.MobileNo);
 
                         }
                     }
@@ -1561,7 +1571,8 @@ namespace GGJWEvent.Controllers
                             SendPushNotification(customer.FCMToken, data.message, data.title);
                             string qry = string.Format("insert into Notification(Title,Message,Date,ExhibitorId,CustomerId) values('"+ data.title + "','"+ data.message + "','"+ DateTime.Now +"',0,'"+ data.id + "')");
                             sf.ExecuteQuery(qry);
-
+                            SendSMS sms = new SendSMS();
+                            string res = sms.sendotp("" + data.title + ", " + data.message + "", customer.MobileNo);
                         }
                     }
                     else
@@ -1814,7 +1825,7 @@ namespace GGJWEvent.Controllers
                         if (dt.Rows.Count < DrawCount)
                         {
 
-                            DataTable dupdt = sf.GetData(string.Format("SELECT * FROM Draw WHERE DrawId='{0}' AND CouponNo='{1}'", Convert.ToInt32(DrawId), draw.CouponNo));
+                            DataTable dupdt = sf.GetData(string.Format("SELECT * FROM Draw WHERE CouponNo='{1}'", draw.CouponNo));
                             if (dupdt.Rows.Count > 0)
                             {
                                 goto RecreateCoupon;
