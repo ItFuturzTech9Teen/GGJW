@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -1929,5 +1930,28 @@ namespace GGJWEvent.Controllers
             }
         }
 
+        [HttpGet]
+        public ResultData MargDeCode(string compressedstring)
+        {
+            string strResult = "";
+            byte[] input = Convert.FromBase64String(compressedstring);
+            using (MemoryStream inputStream = new MemoryStream(input))
+            {
+                using (DeflateStream gzip = new DeflateStream(inputStream, CompressionMode.Decompress))
+                {
+                    using (StreamReader reader = new StreamReader(gzip, System.Text.Encoding.UTF8))
+
+
+                    { strResult = reader.ReadToEnd(); }
+                }
+            }
+
+            ResultData resultData = new ResultData();
+            resultData.Message = "DeCoded Successfully";
+            resultData.Data = strResult;
+            resultData.IsSuccess = true;
+            return resultData;
+
+        }
     }
 }
